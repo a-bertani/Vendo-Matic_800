@@ -1,8 +1,14 @@
 package com.techelevator.view;
 
+import com.techelevator.Item;
+
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
@@ -50,4 +56,43 @@ public class Menu {
 		out.print(System.lineSeparator() + "Please choose an option >>> ");
 		out.flush();
 	}
+
+	//Accepts a file and converts lines in the file into Item Objects and adds them to and Item Object List
+	public void readInventory(File file){
+
+		List<Item> itemList = new ArrayList<Item>();
+
+		try{
+			Scanner scan = new Scanner(file);
+
+			while(scan.hasNextLine()){
+				String[] newItemArray = scan.nextLine().split("\\|");
+
+				if (Objects.equals(newItemArray[3], "Candy")){
+					Item i = new Item(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Candy");
+					i.setMessage("Munch Munch, Yum!");
+					itemList.add(i);
+				} else if (Objects.equals(newItemArray[3], "Drink")){
+					Item i = new Item(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Drink");
+					i.setMessage("Glug Glug, Yum!");
+					itemList.add(i);
+				} else if (Objects.equals(newItemArray[3], "Chip")) {
+					Item i = new Item(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Chip");
+					i.setMessage("Crunch Crunch, Yum!");
+					itemList.add(i);
+				} else if (Objects.equals(newItemArray[3], "Gum")) {
+					Item i = new Item(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Gum");
+					i.setMessage("Chew Chew, Yum!");
+					itemList.add(i);
+				}
+
+
+			}
+
+		} catch(Exception exception){
+			System.out.println("Problem Loading Inventory List.  This Program will now close.");
+		}
+
+	}
+
 }

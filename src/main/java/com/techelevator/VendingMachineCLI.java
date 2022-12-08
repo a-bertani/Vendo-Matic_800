@@ -2,6 +2,12 @@ package com.techelevator;
 
 import com.techelevator.view.Menu;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
+
 public class VendingMachineCLI {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -15,6 +21,10 @@ public class VendingMachineCLI {
 	}
 
 	public void run() {
+
+		menu.readInventory(new File("vendingmachine.csv"));
+
+
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 

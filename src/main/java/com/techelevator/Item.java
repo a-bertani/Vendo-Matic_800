@@ -6,7 +6,7 @@ public class Item {
 	private final double price;
 
 	private final String type;
-	private final int stock;
+	private int stock;
 	private String message = "";
 
 	public String getMessage() {
@@ -35,6 +35,10 @@ public class Item {
 
 	public int getStock() {
 		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public Item(String slotIdentifier, String name, double price, String type) {

@@ -92,6 +92,7 @@ public class Menu {
 		} catch(Exception exception){
 			System.out.println("Problem Loading Inventory List.  This Program will now close.");
 		}
+		service.setInventory(itemList);
 
 	}
 

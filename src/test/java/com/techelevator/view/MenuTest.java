@@ -3,6 +3,7 @@ package com.techelevator.view;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
+import com.techelevator.Service;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -87,6 +88,13 @@ public class MenuTest {
 		String expected = menuDisplay + System.lineSeparator() + "*** Mickey Mouse is not a valid option ***" + System.lineSeparator() + System.lineSeparator() + menuDisplay;
 
 		Assert.assertEquals(expected, output.toString());
+	}
+
+	@Test
+	public void should_read_and_store_inventory_and_return_item_names(){
+		Service service =new Service();
+
+
 	}
 
 	private Menu getMenuForTestingWithUserInput(String userInput) {

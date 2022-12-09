@@ -1,7 +1,9 @@
-
-09/12/2022 01:51:07 PM Potato Crisps A1 $3.05 $1.95
-09/12/2022 01:51:25 PM Potato Crisps A1 $3.05 $1.95
-09/12/2022 01:51:28 PM Potato Crisps A1 $3.05 $1.95
-09/12/2022 01:52:22 PM Potato Crisps A1 $3.05 $1.95
-09/12/2022 01:54:11 PM Potato Crisps A1 $3.05 $1.95
-09/12/2022 01:55:11 PM Potato Crisps A1 $3.05 $1.95
+   Date   |   Time    |    Transaction      |  I$ | Bal$ |
+09/12/2022 04:04:41 PM Potato Crisps A1      $3.05 $1.95
+09/12/2022 04:04:41 PM Stackers A2           $1.45 $0.50
+09/12/2022 04:04:41 PM Potato Crisps A1      $3.05 $16.95
+09/12/2022 04:04:41 PM Potato Crisps A1      $3.05 $13.90
+09/12/2022 04:04:41 PM Potato Crisps A1      $3.05 $10.85
+09/12/2022 04:04:41 PM Potato Crisps A1      $3.05 $7.80
+09/12/2022 04:04:41 PM Potato Crisps A1      $3.05 $4.75
+09/12/2022 04:04:41 PM Stackers A2           $1.45 $3.55

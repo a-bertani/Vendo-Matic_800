@@ -26,7 +26,7 @@ public class Logger {
 
         try {
             printWriter = new PrintWriter(new FileOutputStream(logFile, true));
-            printWriter.print(String.format("%s %s $%.2f $%.2f\n", formattedDate,transactionType, transactionAmount, currentMoneyProvided));
+            printWriter.print(String.format("%s %-21s $%.2f $%.2f\n", formattedDate,transactionType, transactionAmount, currentMoneyProvided));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } finally {

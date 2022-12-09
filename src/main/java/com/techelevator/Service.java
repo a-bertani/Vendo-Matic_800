@@ -42,6 +42,8 @@ public class Service {
                     logger.printLog(result.getName() + " " + result.getSlotIdentifier(),
                                     result.getPrice(),getCurrentMoneyProvided());
                     return result.getName() + " " + result.getPrice() + " " + currentMoneyProvided;
+                } else {
+                    return result.getName() + " is out of stock";
                 }
             }else {
                 return "Insufficient funds";

@@ -17,10 +17,23 @@ public class Service {
 
     public String purchaseItem(String slotIdentifier) {
         //Converts inventory into Stream
-        //Filters stream by slotIdentifier
-        //Checks if currentMoneyProvided >= itemPrice
+       Item result= inventory.stream()
+                .filter(item -> item.getSlotIdentifier().equals(slotIdentifier) )
+                .findFirst()
+                .orElse(null);
+       if(result != null){
+           if (result.getPrice().compareTo(Service.currentMoneyProvided) >=0) {
+               if (result.getStock() > 0){
+                   result.setStock(result.getStock() - 1);
+                   return result.getName() + " " + result.getPrice() + " " + Service.currentMoneyProvided;
+               }
+           }else {
+               return "Insufficient funds";
+           }
+       }
+        return "Product code does not exist";
         //returns Logs transaction using printLog()
-        return "";
+
     }
 
     public String feedMoney() {

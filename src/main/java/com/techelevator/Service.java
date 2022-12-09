@@ -1,16 +1,12 @@
 package com.techelevator;
 
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Service {
-    private static final BigDecimal NICKEL = BigDecimal.valueOf(.05);
-    private static final BigDecimal DIME = BigDecimal.valueOf(.10);
-    private static final BigDecimal DOLLAR = BigDecimal.valueOf(1.00);
-    private static final BigDecimal FIVE = BigDecimal.valueOf(5.00);
-    private static final BigDecimal TEN = BigDecimal.valueOf(10.00);
-    private static final BigDecimal TWENTY = BigDecimal.valueOf(20.00);
+    private Money money;
     private BigDecimal currentMoneyProvided = BigDecimal.valueOf(0.00);
     //ADD INVENTORY  public Inventory inventory;
      List<Item> inventory;
@@ -25,6 +21,7 @@ public class Service {
     }
 
     public String feedMoney() {
+
         //updates currentMoneyProvided
         //returns Log transaction using printLog()
         return "";

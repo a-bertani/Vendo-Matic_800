@@ -16,7 +16,7 @@ public class Menu {
 	private PrintWriter out;
 	private Scanner in;
 
-	private Service service = new Service();
+	public Service service = new Service();
 
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);

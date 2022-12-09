@@ -1,5 +1,9 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,16 +12,26 @@ import java.time.format.DateTimeFormatter;
 public class Logger {
     LocalDateTime localDateTime;
     DateTimeFormatter dateTimeFormatter;
+    PrintWriter printWriter;
 
 
-    public String printLog(String transactionType, BigDecimal transactionAmount, BigDecimal currentMoneyProvided) throws IllegalArgumentException {
+    public void printLog(String transactionType, BigDecimal transactionAmount, BigDecimal currentMoneyProvided) throws IllegalArgumentException {
         if(transactionType == null || transactionAmount == null || currentMoneyProvided == null) {
             throw new IllegalArgumentException("Input values cannot be null");
         }
         localDateTime = LocalDateTime.now();
-        dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss a");
+        dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a");
         String formattedDate = localDateTime.format(dateTimeFormatter);
-        
-        return String.format("%s %s $%.2f $%.2f", formattedDate,transactionType, transactionAmount, currentMoneyProvided);
+        File logFile = new File("Log.txt");
+
+        try {
+            printWriter = new PrintWriter(new FileOutputStream(logFile, true));
+            printWriter.print(String.format("%s %s $%.2f $%.2f\n", formattedDate,transactionType, transactionAmount, currentMoneyProvided));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally {
+            printWriter.close();
+        }
+
     }
 }

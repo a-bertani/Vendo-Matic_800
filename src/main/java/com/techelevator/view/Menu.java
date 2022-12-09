@@ -1,6 +1,6 @@
 package com.techelevator.view;
 
-import com.techelevator.Item;
+import com.techelevator.*;
 
 import java.io.File;
 import java.io.InputStream;
@@ -15,6 +15,8 @@ public class Menu {
 
 	private PrintWriter out;
 	private Scanner in;
+
+	private Service service = new Service();
 
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
@@ -68,27 +70,25 @@ public class Menu {
 			while(scan.hasNextLine()){
 				String[] newItemArray = scan.nextLine().split("\\|");
 
-				if (Objects.equals(newItemArray[3], "Candy")){
-					Item i = new Item(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Candy");
-					i.setMessage("Munch Munch, Yum!");
-					itemList.add(i);
-				} else if (Objects.equals(newItemArray[3], "Drink")){
-					Item i = new Item(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Drink");
-					i.setMessage("Glug Glug, Yum!");
-					itemList.add(i);
-				} else if (Objects.equals(newItemArray[3], "Chip")) {
-					Item i = new Item(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Chip");
-					i.setMessage("Crunch Crunch, Yum!");
-					itemList.add(i);
-				} else if (Objects.equals(newItemArray[3], "Gum")) {
-					Item i = new Item(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Gum");
-					i.setMessage("Chew Chew, Yum!");
-					itemList.add(i);
+				switch (newItemArray[3]){
+					case "Candy":
+						Candy candy = new Candy(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Candy");
+						itemList.add(candy);
+						break;
+					case "Drink":
+						Beverage beverage = new Beverage(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Drink");
+						itemList.add(beverage);
+						break;
+					case "Chip":
+						Chip chip = new Chip(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Chip");
+						itemList.add(chip);
+						break;
+					case "Gum":
+						Gum gum = new Gum(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Gum");
+						itemList.add(gum);
 				}
 
-
 			}
-
 		} catch(Exception exception){
 			System.out.println("Problem Loading Inventory List.  This Program will now close.");
 		}

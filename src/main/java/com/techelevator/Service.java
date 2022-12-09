@@ -1,6 +1,8 @@
 package com.techelevator;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Service {
     private static final BigDecimal NICKEL = BigDecimal.valueOf(.05);
@@ -11,6 +13,7 @@ public class Service {
     private static final BigDecimal TWENTY = BigDecimal.valueOf(20.00);
     private static BigDecimal currentMoneyProvided = BigDecimal.valueOf(0.00);
     //ADD INVENTORY  public Inventory inventory;
+     List<Item> inventory;
 
     public String purchaseItem(String slotIdentifier) {
         //Converts inventory into Stream
@@ -38,5 +41,13 @@ public class Service {
 
     public static void setCurrentMoneyProvided(BigDecimal currentMoneyProvided) {
         Service.currentMoneyProvided = currentMoneyProvided;
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
     }
 }

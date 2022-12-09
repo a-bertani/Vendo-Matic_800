@@ -2,10 +2,12 @@ package com.techelevator;
 
 import com.techelevator.Item;
 
+import java.math.BigDecimal;
+
 public class Beverage extends Item {
 
 	public Beverage(String slotIdentifier, String name, double price, String type) {
-		super(slotIdentifier, name, price, type);
+		super(slotIdentifier, name, BigDecimal.valueOf(price), type);
 	}
 
 @Override

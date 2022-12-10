@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -94,6 +95,32 @@ public class Menu {
 		}
 		service.setInventory(itemList);
 
+	}
+//  Displays item choices including type,
+	public void displayVendingMachineItems(){
+		String starter = "*********************************************************";
+		String begin = "****";
+		String end = "****";
+		String separator = " | ";
+		System.out.println(starter + "\n******************** ITEMS FOR SALE *********************\n" + starter);
+		System.out.println(begin + " TYPE  | ID |      ITEM NAME     | PRICE | STOCK " + end );
+
+		for (Item x : service.getInventory()){
+			int n = 18 - (x.getName().length());
+			char[] spaces = new char[n];
+			Arrays.fill(spaces, ' ');
+
+			int o = 5 - (x.getType().length());
+			char[] typeSpaces = new char[o];
+			Arrays.fill(typeSpaces, ' ');
+
+
+			System.out.print(begin + " " + x.getType() + new String(typeSpaces) + " | " + x.getSlotIdentifier() + separator + x.getName() + new String(spaces) + separator + "$");
+			System.out.printf("%.2f", x.getPrice());
+			System.out.print(separator + "  " + x.getStock() + "   "+ end + "\n");
+		}
+		System.out.print(starter + "\n");
+		System.out.print(starter);
 	}
 
 	public Service getService() {

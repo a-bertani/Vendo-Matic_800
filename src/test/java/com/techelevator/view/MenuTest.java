@@ -3,14 +3,12 @@ package com.techelevator.view;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import com.techelevator.Service;
+import com.techelevator.Services.Service;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
-
-import com.techelevator.view.Menu;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MenuTest {

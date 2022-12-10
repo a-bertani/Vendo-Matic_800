@@ -1,6 +1,7 @@
 package com.techelevator.view;
 
-import com.techelevator.*;
+import com.techelevator.Items.*;
+import com.techelevator.Services.Service;
 
 import java.io.File;
 import java.io.InputStream;
@@ -8,7 +9,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
@@ -16,7 +16,7 @@ public class Menu {
 	private PrintWriter out;
 	private Scanner in;
 
-	public Service service = new Service();
+	private Service service = new Service();
 
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
@@ -96,4 +96,7 @@ public class Menu {
 
 	}
 
+	public Service getService() {
+		return service;
+	}
 }

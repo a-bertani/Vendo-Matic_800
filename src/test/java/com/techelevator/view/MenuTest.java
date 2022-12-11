@@ -2,6 +2,8 @@ package com.techelevator.view;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.math.BigDecimal;
 
 import com.techelevator.Services.Service;
 import org.junit.Assert;
@@ -102,5 +104,29 @@ public class MenuTest {
 
 	private Menu getMenuForTesting() {
 		return getMenuForTestingWithUserInput("1" + System.lineSeparator());
+	}
+
+	@Test
+	public void testGetSalesReport() {
+		Menu menu = new Menu(System.in, System.out);
+		menu.readInventory(new File("vendingmachine.csv"));
+		menu.getSalesReport();
+    }
+
+	@Test
+	public void testPurchasesGetSalesReport() {
+		Menu menu = new Menu(System.in, System.out);
+		menu.readInventory(new File("vendingmachine.csv"));
+		menu.getService().feedMoney(BigDecimal.valueOf(20.00));
+		menu.getService().feedMoney(BigDecimal.valueOf(20.00));
+		System.out.println(menu.getService().purchaseItem("A1"));
+		System.out.println(menu.getService().purchaseItem("A1"));
+		System.out.println(menu.getService().purchaseItem("A1"));
+		System.out.println(menu.getService().purchaseItem("A1"));
+		System.out.println(menu.getService().purchaseItem("A1"));
+		System.out.println(menu.getService().purchaseItem("A1"));
+		System.out.println(menu.getService().purchaseItem("A1"));
+		System.out.println(menu.getService().purchaseItem("A1"));
+		menu.getSalesReport();
 	}
 }

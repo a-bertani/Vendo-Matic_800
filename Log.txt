@@ -1,9 +1,8 @@
    Date   |   Time    |    Transaction      |  I$ | Bal$ |
-
-10/12/2022 03:21:17 PM FEED MONEY:           $5.00 $5.00
-10/12/2022 03:21:17 PM GIVE CHANGE:          $5.00 $0.00
-10/12/2022 03:22:29 PM FEED MONEY:           $5.00 $5.00
-10/12/2022 03:22:29 PM GIVE CHANGE:          $5.00 $0.00
-10/12/2022 03:24:41 PM FEED MONEY:           $5.00 $5.00
-10/12/2022 03:24:41 PM Potato Crisps A1      $3.05 $1.95
-10/12/2022 03:24:41 PM GIVE CHANGE:          $1.95 $0.00
+10/12/2022 09:37:42 PM FEED MONEY:           $20.00 $20.00
+10/12/2022 09:37:42 PM FEED MONEY:           $20.00 $40.00
+10/12/2022 09:37:42 PM Potato Crisps A1      $3.05 $36.95
+10/12/2022 09:37:42 PM Potato Crisps A1      $3.05 $33.90
+10/12/2022 09:37:42 PM Potato Crisps A1      $3.05 $30.85
+10/12/2022 09:37:42 PM Potato Crisps A1      $3.05 $27.80
+10/12/2022 09:37:42 PM Potato Crisps A1      $3.05 $24.75

@@ -7,10 +7,13 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class Menu {
 
@@ -121,6 +124,19 @@ public class Menu {
 		}
 		System.out.print(starter + "\n");
 		System.out.print(starter);
+	}
+
+
+	public void getSalesReport() {
+		BigDecimal totalSales = BigDecimal.valueOf(0.00);
+		service.getInventory().forEach(item -> System.out.printf("%-19s| %s\n",item.getName(),(5 - item.getStock())));
+		List<Item> itemsThatSold = service.getInventory().stream()
+				.filter(item -> (5 - item.getStock()) > 0)
+				.collect(Collectors.toList());
+		for (Item item : itemsThatSold) {
+			totalSales = totalSales.add(item.getPrice().multiply(BigDecimal.valueOf(5 - item.getStock())));
+		}
+		System.out.printf("\n**TOTAL SALES** $%s", totalSales);
 	}
 
 	public Service getService() {

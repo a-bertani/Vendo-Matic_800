@@ -10,10 +10,10 @@ import java.util.List;
 The service class is responsible for handling all transactions
  */
 public class Service {
-    private Money money = new Money();
+    private final Money money = new Money();
     private BigDecimal currentMoneyProvided = BigDecimal.valueOf(0.00);
     private List<Item> inventory;
-    private Logger logger = new Logger();
+    private final Logger logger = new Logger();
     /*
     The purchaseItem method is responsible for checking the validity of a purchase
      before dispensing the item.

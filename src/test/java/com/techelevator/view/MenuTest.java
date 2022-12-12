@@ -2,7 +2,9 @@ package com.techelevator.view;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
+import com.techelevator.Items.Item;
 import com.techelevator.Services.Service;
 import org.junit.Assert;
 import org.junit.Before;
@@ -90,9 +92,13 @@ public class MenuTest {
 
 	@Test
 	public void should_read_and_store_inventory_and_return_item_names(){
-		Service service =new Service();
-
-
+		Menu menu = getMenuForTesting();
+		menu.readInventory(new File("testInventory.txt"));
+		String result = "";
+		for (Item x : menu.getService().getInventory()){
+			result = x.getName();
+		}
+		Assert.assertEquals("Potato Crisps", result);
 	}
 
 	private Menu getMenuForTestingWithUserInput(String userInput) {

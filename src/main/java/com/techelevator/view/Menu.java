@@ -14,8 +14,8 @@ import java.util.Scanner;
 
 public class Menu {
 
-	private PrintWriter out;
-	private Scanner in;
+	private final PrintWriter out;
+	private final Scanner in;
 
 	private Service service = new Service();
 
@@ -65,64 +65,67 @@ public class Menu {
 
 		List<Item> itemList = new ArrayList<Item>();
 
-		try{
-			Scanner scan = new Scanner(file);
+		if(file != null) {
+			try {
+				Scanner scan = new Scanner(file);
 
-			while(scan.hasNextLine()){
-				String[] newItemArray = scan.nextLine().split("\\|");
+				while (scan.hasNextLine()) {
+					String[] newItemArray = scan.nextLine().split("\\|");
 
-				switch (newItemArray[3]){
-					case "Candy":
-						Candy candy = new Candy(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Candy");
-						itemList.add(candy);
-						break;
-					case "Drink":
-						Beverage beverage = new Beverage(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Drink");
-						itemList.add(beverage);
-						break;
-					case "Chip":
-						Chip chip = new Chip(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Chip");
-						itemList.add(chip);
-						break;
-					case "Gum":
-						Gum gum = new Gum(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Gum");
-						itemList.add(gum);
+					switch (newItemArray[3]) {
+						case "Candy":
+							Candy candy = new Candy(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Candy");
+							itemList.add(candy);
+							break;
+						case "Drink":
+							Beverage beverage = new Beverage(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Drink");
+							itemList.add(beverage);
+							break;
+						case "Chip":
+							Chip chip = new Chip(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Chip");
+							itemList.add(chip);
+							break;
+						case "Gum":
+							Gum gum = new Gum(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Gum");
+							itemList.add(gum);
+					}
+
 				}
-
+			} catch (Exception exception) {
+				System.out.println("Problem Loading Inventory List.  This Program will now close.");
 			}
-		} catch(Exception exception){
-			System.out.println("Problem Loading Inventory List.  This Program will now close.");
+			service.setInventory(itemList);
 		}
-		service.setInventory(itemList);
 
 	}
 //  Displays item choices including type,
-	public void displayVendingMachineItems(){
+	public void displayVendingMachineItems() {
 		String starter = "*********************************************************";
 		String begin = "****";
 		String end = "****";
 		String separator = " | ";
 		System.out.println(starter + "\n******************** ITEMS FOR SALE *********************\n" + starter);
-		System.out.println(begin + " TYPE  | ID |      ITEM NAME     | PRICE | STOCK " + end );
+		System.out.println(begin + " TYPE  | ID |      ITEM NAME     | PRICE | STOCK " + end);
+		if (service.getInventory() != null) {
+			for (Item x : service.getInventory()) {
+				int n = 18 - (x.getName().length());
+				char[] spaces = new char[n];
+				Arrays.fill(spaces, ' ');
 
-		for (Item x : service.getInventory()){
-			int n = 18 - (x.getName().length());
-			char[] spaces = new char[n];
-			Arrays.fill(spaces, ' ');
-
-			int o = 5 - (x.getType().length());
-			char[] typeSpaces = new char[o];
-			Arrays.fill(typeSpaces, ' ');
+				int o = 5 - (x.getType().length());
+				char[] typeSpaces = new char[o];
+				Arrays.fill(typeSpaces, ' ');
 
 
-			System.out.print(begin + " " + x.getType() + new String(typeSpaces) + " | " + x.getSlotIdentifier() + separator + x.getName() + new String(spaces) + separator + "$");
-			System.out.printf("%.2f", x.getPrice());
-			System.out.print(separator + "  " + x.getStock() + "   "+ end + "\n");
+				System.out.print(begin + " " + x.getType() + new String(typeSpaces) + " | " + x.getSlotIdentifier() + separator + x.getName() + new String(spaces) + separator + "$");
+				System.out.printf("%.2f", x.getPrice());
+				System.out.print(separator + "  " + x.getStock() + "   " + end + "\n");
+			}
+			System.out.print(starter + "\n");
+
+			System.out.print(starter);
 		}
-		System.out.print(starter + "\n");
-		System.out.print(starter);
 	}
-
 	public Service getService() {
 		return service;
 	}

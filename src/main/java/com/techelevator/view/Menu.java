@@ -20,7 +20,7 @@ public class Menu {
 	private final PrintWriter out;
 	private final Scanner in;
 
-	private Service service = new Service();
+	private final Service service = new Service();
 
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
@@ -129,9 +129,6 @@ public class Menu {
 			System.out.print(starter);
 		}
 	}
-<<<<<<< HEAD
-=======
-
 
 	public void getSalesReport() {
 		BigDecimal totalSales = BigDecimal.valueOf(0.00);
@@ -144,8 +141,6 @@ public class Menu {
 		}
 		System.out.printf("\n**TOTAL SALES** $%s", totalSales);
 	}
-
->>>>>>> 94c8a417a659023094d17f8a4ed709112b05fb6c
 	public Service getService() {
 		return service;
 	}

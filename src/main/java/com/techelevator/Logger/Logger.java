@@ -10,17 +10,14 @@ import java.time.format.DateTimeFormatter;
 
 //Logger class is responsible for create the log text String that will be put in the Log.txt file
 public class Logger {
-    LocalDateTime localDateTime;
-    DateTimeFormatter dateTimeFormatter;
-    PrintWriter printWriter;
-
+    private PrintWriter printWriter;
 
     public void printLog(String transactionType, BigDecimal transactionAmount, BigDecimal currentMoneyProvided) throws IllegalArgumentException {
         if(transactionType == null || transactionAmount == null || currentMoneyProvided == null) {
             throw new IllegalArgumentException("Input values cannot be null");
         }
-        localDateTime = LocalDateTime.now();
-        dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a");
         String formattedDate = localDateTime.format(dateTimeFormatter);
         File logFile = new File("Log.txt");
 
@@ -32,6 +29,6 @@ public class Logger {
         } finally {
             printWriter.close();
         }
-
     }
+
 }

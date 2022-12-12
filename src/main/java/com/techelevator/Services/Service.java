@@ -117,4 +117,8 @@ public class Service {
     public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
     }
+
+    public Logger getLogger() {
+        return logger;
+    }
 }

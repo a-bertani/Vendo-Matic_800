@@ -1,12 +1,8 @@
 package com.techelevator.view;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-<<<<<<< HEAD
-=======
 import java.math.BigDecimal;
->>>>>>> 94c8a417a659023094d17f8a4ed709112b05fb6c
 
 import com.techelevator.Items.Item;
 import com.techelevator.Services.Service;

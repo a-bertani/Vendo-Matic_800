@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
 
 public class Menu {
 
@@ -102,33 +103,22 @@ public class Menu {
 
 	}
 //  Displays item choices including type,
-	public void displayVendingMachineItems() {
-		String starter = "*********************************************************";
-		String begin = "****";
-		String end = "****";
-		String separator = " | ";
-		System.out.println(starter + "\n******************** ITEMS FOR SALE *********************\n" + starter);
-		System.out.println(begin + " TYPE  | ID |      ITEM NAME     | PRICE | STOCK " + end);
-		if (service.getInventory() != null) {
-			for (Item x : service.getInventory()) {
-				int n = 18 - (x.getName().length());
-				char[] spaces = new char[n];
-				Arrays.fill(spaces, ' ');
+public void displayVendingMachineItems() {
+	String line = "*********************************************************\n";
+	String separator = " | ";
+	System.out.printf("%s******************** ITEMS FOR SALE *********************\n%s**** %5s%sID%s%18s%sPRICE%s%-5s ****\n",
+			line, line, StringUtils.center("TYPE", 5), separator, separator, StringUtils.center("ITEM NAME", 18), separator, separator, "STOCK");
 
-				int o = 5 - (x.getType().length());
-				char[] typeSpaces = new char[o];
-				Arrays.fill(typeSpaces, ' ');
-
-
-				System.out.print(begin + " " + x.getType() + new String(typeSpaces) + " | " + x.getSlotIdentifier() + separator + x.getName() + new String(spaces) + separator + "$");
-				System.out.printf("%.2f", x.getPrice());
-				System.out.print(separator + "  " + x.getStock() + "   " + end + "\n");
-			}
-			System.out.print(starter + "\n");
-
-			System.out.print(starter);
+	if (service.getInventory() != null) {
+		for (Item x : service.getInventory()) {
+			System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
+					StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator, StringUtils.center(x.getName(), 18),
+					separator, x.getPrice(), separator, StringUtils.center(String.valueOf(x.getStock()), 5));
 		}
+
+		System.out.printf("%s%s", line, line);
 	}
+}
 
 	public void getSalesReport() {
 		BigDecimal totalSales = BigDecimal.valueOf(0.00);

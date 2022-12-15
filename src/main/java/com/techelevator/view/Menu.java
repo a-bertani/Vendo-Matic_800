@@ -135,7 +135,7 @@ public void displayVendingMachineItems() {
 	}
 
 	public void feedMoneySelected() {
-		System.out.println("\n Please Enter Whole Dollar Amount To Feed: ");
+		System.out.println("\nPlease Enter Whole Dollar Amount To Feed: ");
 		String response = "";
 		Double amount;
 		try {

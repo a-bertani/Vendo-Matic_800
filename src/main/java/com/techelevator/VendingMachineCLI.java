@@ -14,12 +14,16 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
 	private static final String MAIN_MENU_OPTION_SALES_REPORT ="Sales Report";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT, MAIN_MENU_OPTION_SALES_REPORT};
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS,
+														MAIN_MENU_OPTION_PURCHASE,
+														MAIN_MENU_OPTION_EXIT,
+														MAIN_MENU_OPTION_SALES_REPORT};
 	private static final String PURCHASE_PROCESS_MENU_OPTION_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_PROCESS_MENU_OPTION_SELECT_PRODUCT = "Select Product";
 	private static final String PURCHASE_PROCESS_MENU_OPTION_FINISH_TRANSACTION ="Finish Transaction";
-	private static final String[] PURCHASE_PROCESS_MENU_OPTIONS = {PURCHASE_PROCESS_MENU_OPTION_FEED_MONEY, PURCHASE_PROCESS_MENU_OPTION_SELECT_PRODUCT, PURCHASE_PROCESS_MENU_OPTION_FINISH_TRANSACTION};
-
+	private static final String[] PURCHASE_PROCESS_MENU_OPTIONS = { PURCHASE_PROCESS_MENU_OPTION_FEED_MONEY,
+																	PURCHASE_PROCESS_MENU_OPTION_SELECT_PRODUCT,
+																	PURCHASE_PROCESS_MENU_OPTION_FINISH_TRANSACTION};
 	private Menu menu;
 
 	public VendingMachineCLI(Menu menu) {
@@ -27,17 +31,14 @@ public class VendingMachineCLI {
 	}
 
 	public void run() {
-
 		menu.readInventory(new File("vendingmachine.csv"));
-
 
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
-
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				menu.displayVendingMachineItems();
+				menu.displayCurrentMoneyProvided();
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				// do purchase
 				handlePurchaseProcessMenu(this.menu,choice);
 			}else if(choice.equals(MAIN_MENU_OPTION_EXIT)){
 				menu.exitMenu();

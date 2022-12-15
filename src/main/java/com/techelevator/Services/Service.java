@@ -21,11 +21,12 @@ public class Service {
      @return String shows the result of the attempt to purchase item
      */
     public String purchaseItem(String slotIdentifier) {
-       Item result= inventory.stream()
-                .filter(item -> item.getSlotIdentifier().equals(slotIdentifier) )
+        String id = slotIdentifier.trim();
+        Item result= inventory.stream()
+                .filter(item -> item.getSlotIdentifier().equalsIgnoreCase(id))
                 .findFirst()
                 .orElse(null);
-       return dispenseItem(result);
+        return dispenseItem(result);
     }
     /*
     The feedMoney method checks to see if the amount to add is equivalent to a valid
@@ -40,13 +41,13 @@ public class Service {
                 .findFirst()
                 .orElse(null);
 
-        if (amount == null || amountToAdd.compareTo(BigDecimal.ONE) <= 0 ){
-            return "Money must be a whole dollar amount";
+        if (amount == null || amountToAdd.compareTo(BigDecimal.ONE) < 0 ){
+            return "\nMoney must be a whole dollar amount";
         }
 
         currentMoneyProvided = currentMoneyProvided.add(amount);
         logger.printLog("FEED MONEY: ", amountToAdd, getCurrentMoneyProvided() );
-        return "\n Money Deposited Successfully";
+        return "\nMoney deposited successfully";
     }
 
     /*
@@ -67,7 +68,7 @@ public class Service {
                     setCurrentMoneyProvided(getCurrentMoneyProvided().subtract(result.getPrice()));
                     result.setStock(result.getStock() - 1);
                     logger.printLog(result.getName() + " " + result.getSlotIdentifier(),
-                                    result.getPrice(),getCurrentMoneyProvided()) ;
+                            result.getPrice(),getCurrentMoneyProvided()) ;
                     return result.getName() + " " + result.getPrice() + " " + currentMoneyProvided + "\n" + result.getMessage();
                 } else {
                     return result.getName() + " is out of stock";
@@ -100,8 +101,8 @@ public class Service {
             }
         }
         return String.format("Quarters: %d\n" +
-                             "Dimes: %d\n" +
-                             "Nickels: %d\n", amtOfQuarters, amtOfDimes, amtOfNickels);
+                "Dimes: %d\n" +
+                "Nickels: %d\n", amtOfQuarters, amtOfDimes, amtOfNickels);
     }
     public BigDecimal getCurrentMoneyProvided() {
         return currentMoneyProvided;

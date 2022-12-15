@@ -20,7 +20,6 @@ public class Menu {
 
 	private final PrintWriter out;
 	private final Scanner in;
-
 	private final Service service = new Service();
 
 	public Menu(InputStream input, OutputStream output) {
@@ -66,7 +65,6 @@ public class Menu {
 
 	//Accepts a file and converts lines in the file into Item Objects and adds them to and Item Object List
 	public void readInventory(File file){
-
 		List<Item> itemList = new ArrayList<Item>();
 
 		if(file != null) {
@@ -75,11 +73,11 @@ public class Menu {
 
 				while (scan.hasNextLine()) {
 					String[] newItemArray = scan.nextLine().split("\\|");
-
 					switch (newItemArray[3]) {
 						case "Candy":
 							Candy candy = new Candy(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
 							itemList.add(candy);
+							break;
 						case "Drink":
 							Beverage beverage = new Beverage(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
 							itemList.add(beverage);
@@ -91,33 +89,31 @@ public class Menu {
 						case "Gum":
 							Gum gum = new Gum(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
 							itemList.add(gum);
+							break;
 					}
-
 				}
 			} catch (Exception exception) {
 				System.out.println("Problem Loading Inventory List.  This Program will now close.");
 			}
 			service.setInventory(itemList);
 		}
-
 	}
-//  Displays item choices including type,
-public void displayVendingMachineItems() {
-	String line = "*********************************************************\n";
-	String separator = " | ";
-	System.out.printf("%s******************** ITEMS FOR SALE *********************\n%s**** %5s%sID%s%18s%sPRICE%s%-5s ****\n",
-			line, line, StringUtils.center("TYPE", 5), separator, separator, StringUtils.center("ITEM NAME", 18), separator, separator, "STOCK");
+	//  Displays item choices including type,
+	public void displayVendingMachineItems() {
+		String line = "*********************************************************\n";
+		String separator = " | ";
+		System.out.printf("%s******************** ITEMS FOR SALE *********************\n%s**** %5s%sID%s%18s%sPRICE%s%-5s ****\n",
+				line, line, StringUtils.center("TYPE", 5), separator, separator, StringUtils.center("ITEM NAME", 18), separator, separator, "STOCK");
 
-	if (service.getInventory() != null) {
-		for (Item x : service.getInventory()) {
-			System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
-					StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator, StringUtils.center(x.getName(), 18),
-					separator, x.getPrice(), separator, StringUtils.center(String.valueOf(x.getStock()), 5));
+		if (service.getInventory() != null) {
+			for (Item x : service.getInventory()) {
+				System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
+						StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator, StringUtils.center(x.getName(), 18),
+						separator, x.getPrice(), separator, StringUtils.center(String.valueOf(x.getStock()), 5));
+			}
+			System.out.printf("%s%s", line, line);
 		}
-
-		System.out.printf("%s%s", line, line);
 	}
-}
 
 	public void getSalesReport() {
 		BigDecimal totalSales = BigDecimal.valueOf(0.00);
@@ -128,7 +124,7 @@ public void displayVendingMachineItems() {
 		for (Item item : itemsThatSold) {
 			totalSales = totalSales.add(item.getPrice().multiply(BigDecimal.valueOf(5 - item.getStock())));
 		}
-		System.out.printf("\n**TOTAL SALES** $%s", totalSales);
+		System.out.printf("\n**TOTAL SALES** $%.02f", totalSales);
 	}
 	public Service getService() {
 		return service;
@@ -160,6 +156,7 @@ public void displayVendingMachineItems() {
 		System.out.printf("\nCurrent Money Provided: $%.02f\n", service.getCurrentMoneyProvided());
 	}
 	public void exitMenu() {
+		System.out.println("\nThank You! Please Come Again!");
 		System.exit(0);
 	}
 }

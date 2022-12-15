@@ -40,10 +40,11 @@ public class Item {
 	}
 
 
-	public Item(String slotIdentifier, String name, BigDecimal price) {
+	public Item(String slotIdentifier, String name, BigDecimal price, String type) {
 		this.slotIdentifier = slotIdentifier;
 		this.name = name;
 		this.price = price;
+		this.type = type;
 		this.stock = 5;
 	}
 }

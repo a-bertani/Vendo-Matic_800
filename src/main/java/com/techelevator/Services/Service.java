@@ -120,7 +120,4 @@ public class Service {
         this.inventory = inventory;
     }
 
-    public Logger getLogger() {
-        return logger;
-    }
 }

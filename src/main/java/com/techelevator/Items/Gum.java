@@ -4,8 +4,7 @@ import java.math.BigDecimal;
 
 public class Gum extends Item{
 	public Gum(String slotIdentifier, String name, double price) {
-		super(slotIdentifier, name, BigDecimal.valueOf(price));
-		super.setType("Gum");
+		super(slotIdentifier, name, BigDecimal.valueOf(price), "Gum");
 	}
 
 	@Override

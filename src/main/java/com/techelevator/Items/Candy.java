@@ -3,8 +3,9 @@ package com.techelevator.Items;
 import java.math.BigDecimal;
 
 public class Candy extends Item {
-	public Candy(String slotIdentifier, String name, double price, String type) {
-		super(slotIdentifier, name, BigDecimal.valueOf(price), type);
+	public Candy(String slotIdentifier, String name, double price) {
+		super(slotIdentifier, name, BigDecimal.valueOf(price));
+		super.setType("Candy");
 	}
 @Override
 	public String getMessage() {

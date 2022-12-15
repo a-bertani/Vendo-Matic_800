@@ -78,19 +78,18 @@ public class Menu {
 
 					switch (newItemArray[3]) {
 						case "Candy":
-							Candy candy = new Candy(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Candy");
+							Candy candy = new Candy(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
 							itemList.add(candy);
-							break;
 						case "Drink":
-							Beverage beverage = new Beverage(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Drink");
+							Beverage beverage = new Beverage(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
 							itemList.add(beverage);
 							break;
 						case "Chip":
-							Chip chip = new Chip(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Chip");
+							Chip chip = new Chip(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
 							itemList.add(chip);
 							break;
 						case "Gum":
-							Gum gum = new Gum(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]), "Gum");
+							Gum gum = new Gum(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
 							itemList.add(gum);
 					}
 

@@ -7,16 +7,11 @@ public class Item {
 	private final String name;
 	private final BigDecimal price;
 
-	private final String type;
+	private String type;
 	private int stock;
-	private String message = "";
 
 	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
+		return "";
 	}
 
 	public String getSlotIdentifier() {
@@ -31,10 +26,6 @@ public class Item {
 		return price;
 	}
 
-	public String getType() {
-		return type;
-	}
-
 	public int getStock() {
 		return stock;
 	}
@@ -43,11 +34,16 @@ public class Item {
 		this.stock = stock;
 	}
 
-	public Item(String slotIdentifier, String name, BigDecimal price, String type) {
+	public void setType(String type) {this.type = type;}
+	public String getType() {
+		return type;
+	}
+
+
+	public Item(String slotIdentifier, String name, BigDecimal price) {
 		this.slotIdentifier = slotIdentifier;
 		this.name = name;
 		this.price = price;
-		this.type = type;
 		this.stock = 5;
 	}
 }

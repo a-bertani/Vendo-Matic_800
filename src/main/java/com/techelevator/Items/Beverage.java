@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 
 public class Beverage extends Item {
 
-	public Beverage(String slotIdentifier, String name, double price, String type) {
-		super(slotIdentifier, name, BigDecimal.valueOf(price), type);
+	public Beverage(String slotIdentifier, String name, double price) {
+		super(slotIdentifier, name, BigDecimal.valueOf(price));
+		super.setType("Drink");
 	}
 
 @Override

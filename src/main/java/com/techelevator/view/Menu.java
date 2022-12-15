@@ -143,6 +143,7 @@ public class Menu {
 		}
 	}
 	public void selectProductSelected(){
+		displayVendingMachineItems();
 		System.out.println("\nPlease Enter Item Id: ");
 		String slotIdentifier = in.nextLine();
 		System.out.println(service.purchaseItem(slotIdentifier));

@@ -34,18 +34,19 @@ public class Service {
     @param amountToAdd potential amount to add
     @return void
      */
-    public void feedMoney(BigDecimal amountToAdd) {
+    public String feedMoney(BigDecimal amountToAdd) {
         BigDecimal amount = money.moneyList.stream()
                 .filter(a -> a.equals(amountToAdd))
                 .findFirst()
                 .orElse(null);
 
         if (amount == null || amountToAdd.compareTo(BigDecimal.ONE) <= 0 ){
-            throw new IllegalArgumentException("Money must be a whole dollar amount");
+            return "Money must be a whole dollar amount";
         }
 
         currentMoneyProvided = currentMoneyProvided.add(amount);
         logger.printLog("FEED MONEY: ", amountToAdd, getCurrentMoneyProvided() );
+        return "\n Money Deposited Successfully";
     }
 
     /*

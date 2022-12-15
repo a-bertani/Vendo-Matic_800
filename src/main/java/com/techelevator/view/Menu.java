@@ -56,7 +56,7 @@ public class Menu {
 
 	private void displayMenuOptions(Object[] options) {
 		out.println();
-		for (int i = 0; i < options.length; i++) {
+		for (int i = 0; i < 3; i++) {
 			int optionNum = i + 1;
 			out.println(optionNum + ") " + options[i]);
 		}
@@ -133,5 +133,34 @@ public void displayVendingMachineItems() {
 	}
 	public Service getService() {
 		return service;
+	}
+
+	public void feedMoneySelected() {
+		System.out.println("\n Please Enter Whole Dollar Amount To Feed: ");
+		String response = "";
+		Double amount;
+		try {
+			response = in.nextLine();
+			amount = Double.parseDouble(response);
+			System.out.println(service.feedMoney(BigDecimal.valueOf(amount)));
+		} catch (NumberFormatException e) {
+			System.out.println("Please Enter A Real Number");
+		}
+	}
+	public void selectProductSelected(){
+		System.out.println("\nPlease Enter Item Id: ");
+		String slotIdentifier = in.nextLine();
+		System.out.println(service.purchaseItem(slotIdentifier));
+	}
+	public void finishTransactionSelected(){
+		System.out.println("\nCurrent Money Provided: 0.00\n");
+		System.out.println("Thank You For Your Service!");
+		System.out.println(service.finishTransaction());
+	}
+	public void displayCurrentMoneyProvided(){
+		System.out.printf("\nCurrent Money Provided: $%.02f\n", service.getCurrentMoneyProvided());
+	}
+	public void exitMenu() {
+		System.exit(0);
 	}
 }

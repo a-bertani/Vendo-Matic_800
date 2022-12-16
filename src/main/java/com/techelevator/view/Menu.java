@@ -100,16 +100,18 @@ public class Menu {
 	}
 	//  Displays item choices including type,
 	public void displayVendingMachineItems() {
-		String line = "*********************************************************\n";
+		String line = "************************************************************\n";
 		String separator = " | ";
-		System.out.printf("%s******************** ITEMS FOR SALE *********************\n%s**** %5s%sID%s%18s%sPRICE%s%-5s ****\n",
-				line, line, StringUtils.center("TYPE", 5), separator, separator, StringUtils.center("ITEM NAME", 18), separator, separator, "STOCK");
+		System.out.printf("%s********************** ITEMS FOR SALE **********************\n%s**** %5s%sID%s%18s%sPRICE%s%-5s ****\n",
+				line, line, StringUtils.center("TYPE", 5), separator, separator,
+				StringUtils.center("ITEM NAME", 18), separator, separator, StringUtils.center("STOCK",8));
 
 		if (service.getInventory() != null) {
 			for (Item x : service.getInventory()) {
 				System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
 						StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator, StringUtils.center(x.getName(), 18),
-						separator, x.getPrice(), separator, StringUtils.center(String.valueOf(x.getStock()), 5));
+						separator, x.getPrice(), separator,
+						x.getStock() > 0 ? StringUtils.center("" + x.getStock(), 8) : StringUtils.center("SOLD OUT", 8) );
 			}
 			System.out.printf("%s%s", line, line);
 		}

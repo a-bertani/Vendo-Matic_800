@@ -13,9 +13,10 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.techelevator.VendingMachineCLI;
 import org.apache.commons.lang3.StringUtils;
 
-public class Menu{
+public class Menu {
 
 	private final PrintWriter out;
 	private final Scanner in;
@@ -54,113 +55,123 @@ public class Menu{
 
 	private void displayMenuOptions(Object[] options) {
 		out.println();
-		for (int i = 0; i < 3; i++) {
-			int optionNum = i + 1;
-			out.println(optionNum + ") " + options[i]);
-		}
-		out.print(System.lineSeparator() + "Please choose an option >>> ");
-		out.flush();
-	}
-
-	//Accepts a file and converts lines in the file into Item Objects and adds them to and Item Object List
-	public void readInventory(File file){
-		List<Item> itemList = new ArrayList<Item>();
-
-		if(file != null) {
-			try {
-				Scanner scan = new Scanner(file);
-
-				while (scan.hasNextLine()) {
-
-					String[] newItemArray = scan.nextLine().split("\\|");
-					switch (newItemArray[3]) {
-						case "Candy":
-							Candy candy = new Candy(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
-							itemList.add(candy);
-							break;
-						case "Drink":
-							Beverage beverage = new Beverage(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
-							itemList.add(beverage);
-							break;
-						case "Chip":
-							Chip chip = new Chip(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
-							itemList.add(chip);
-							break;
-						case "Gum":
-							Gum gum = new Gum(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
-							itemList.add(gum);
-							break;
-					}
+//		if (options.length == 6) {
+//			for (int i = 0; i < options.length; i++) {
+//				int optionNum = i + 1;
+//				out.println(optionNum + ") " + options[i]);
+//			}
+//		} else
+//		{
+			for (int i = 0; i < options.length; i++) {
+				int optionNum = i + 1;
+				if (options[i] == "Sales Report" || options[i] == "Admin Menu"){
+					continue;
 				}
-			} catch (Exception exception) {
-				System.out.println("Problem Loading Inventory List.  This Program will now close.");
+				out.println(optionNum + ") " + options[i]);
 			}
-			Collections.sort(itemList);
-			service.setInventory(itemList);
+			out.print(System.lineSeparator() + "Please choose an option >>> ");
+			out.flush();
 		}
-	}
-	//  Displays item choices including type,
-	public void displayVendingMachineItems() {
-		String line = "************************************************************\n";
-		String separator = " | ";
-		System.out.printf("%s********************** ITEMS FOR SALE **********************\n%s**** %5s%sID%s%18s%sPRICE%s%-5s ****\n",
-				line, line, StringUtils.center("TYPE", 5), separator, separator,
-				StringUtils.center("ITEM NAME", 18), separator, separator, StringUtils.center("STOCK",8));
 
-		if (service.getInventory() != null) {
-			for (Item x : service.getInventory()) {
-				System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
-						StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator,
-						StringUtils.center(x.getName(), 18), separator, x.getPrice(), separator,
-						x.getStock() > 0 ? StringUtils.center(String.valueOf(x.getStock()), 8) : StringUtils.center("SOLD OUT", 8) );
+		//Accepts a file and converts lines in the file into Item Objects and adds them to and Item Object List
+		public void readInventory (File file){
+			List<Item> itemList = new ArrayList<Item>();
+
+			if (file != null) {
+				try {
+					Scanner scan = new Scanner(file);
+
+					while (scan.hasNextLine()) {
+
+						String[] newItemArray = scan.nextLine().split("\\|");
+						switch (newItemArray[3]) {
+							case "Candy":
+								Candy candy = new Candy(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
+								itemList.add(candy);
+								break;
+							case "Drink":
+								Beverage beverage = new Beverage(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
+								itemList.add(beverage);
+								break;
+							case "Chip":
+								Chip chip = new Chip(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
+								itemList.add(chip);
+								break;
+							case "Gum":
+								Gum gum = new Gum(newItemArray[0], newItemArray[1], Double.parseDouble(newItemArray[2]));
+								itemList.add(gum);
+								break;
+						}
+					}
+				} catch (Exception exception) {
+					System.out.println("Problem Loading Inventory List.  This Program will now close.");
+				}
+				Collections.sort(itemList);
+				service.setInventory(itemList);
 			}
-			System.out.printf("%s%s", line, line);
 		}
-	}
+		//  Displays item choices including type,
+		public void displayVendingMachineItems () {
+			String line = "************************************************************\n";
+			String separator = " | ";
+			System.out.printf("%s********************** ITEMS FOR SALE **********************\n%s**** %5s%sID%s%18s%sPRICE%s%-5s ****\n",
+					line, line, StringUtils.center("TYPE", 5), separator, separator,
+					StringUtils.center("ITEM NAME", 18), separator, separator, StringUtils.center("STOCK", 8));
 
-	public void getSalesReport() {
-		BigDecimal totalSales = BigDecimal.valueOf(0.00);
-		service.getInventory().forEach(item -> System.out.printf("%-19s| %s\n",item.getName(),(5 - item.getStock())));
-		List<Item> itemsThatSold = service.getInventory().stream()
-				.filter(item -> (5 - item.getStock()) > 0)
-				.collect(Collectors.toList());
-		for (Item item : itemsThatSold) {
-			totalSales = totalSales.add(item.getPrice().multiply(BigDecimal.valueOf(5 - item.getStock())));
+			if (service.getInventory() != null) {
+				for (Item x : service.getInventory()) {
+					System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
+							StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator,
+							StringUtils.center(x.getName(), 18), separator, x.getPrice(), separator,
+							x.getStock() > 0 ? StringUtils.center(String.valueOf(x.getStock()), 8) : StringUtils.center("SOLD OUT", 8));
+				}
+				System.out.printf("%s%s", line, line);
+			}
 		}
-		System.out.printf("\n**TOTAL SALES** $%.02f", totalSales);
-	}
-	public Service getService() {
-		return service;
-	}
 
-	public void feedMoneySelected() {
-		System.out.println("\nPlease Enter Whole Dollar Amount To Feed: ");
-		String response = "";
-		Double amount;
-		try {
-			response = in.nextLine();
-			amount = Double.parseDouble(response);
-			System.out.println(service.feedMoney(BigDecimal.valueOf(amount)));
-		} catch (NumberFormatException e) {
-			System.out.println("Please Enter A Real Number");
+		public void getSalesReport () {
+			BigDecimal totalSales = BigDecimal.valueOf(0.00);
+			service.getInventory().forEach(item -> System.out.printf("%-19s| %s\n", item.getName(), (5 - item.getStock())));
+			List<Item> itemsThatSold = service.getInventory().stream()
+					.filter(item -> (5 - item.getStock()) > 0)
+					.collect(Collectors.toList());
+			for (Item item : itemsThatSold) {
+				totalSales = totalSales.add(item.getPrice().multiply(BigDecimal.valueOf(5 - item.getStock())));
+			}
+			System.out.printf("\n**TOTAL SALES** $%.02f", totalSales);
+		}
+		public Service getService () {
+			return service;
+		}
+
+		public void feedMoneySelected () {
+			System.out.println("\nPlease Enter Whole Dollar Amount To Feed: ");
+			String response = "";
+			Double amount;
+			try {
+				response = in.nextLine();
+				amount = Double.parseDouble(response);
+				System.out.println(service.feedMoney(BigDecimal.valueOf(amount)));
+			} catch (NumberFormatException e) {
+				System.out.println("Please Enter A Real Number");
+			}
+		}
+		public void selectProductSelected () {
+			displayVendingMachineItems();
+			System.out.println("\nPlease Enter Item Id: ");
+			String slotIdentifier = in.nextLine();
+			System.out.println(service.purchaseItem(slotIdentifier));
+		}
+		public void finishTransactionSelected () {
+			System.out.println("\nCurrent Money Provided: 0.00\n");
+			System.out.println("Thank You For Your Service!");
+			System.out.println(service.finishTransaction());
+		}
+		public void displayCurrentMoneyProvided () {
+			System.out.printf("\nCurrent Money Provided: $%.02f\n", service.getCurrentMoneyProvided());
+		}
+		public void exitMenu () {
+			System.out.println("\nThank You! Please Come Again!");
+			System.exit(0);
 		}
 	}
-	public void selectProductSelected(){
-		displayVendingMachineItems();
-		System.out.println("\nPlease Enter Item Id: ");
-		String slotIdentifier = in.nextLine();
-		System.out.println(service.purchaseItem(slotIdentifier));
-	}
-	public void finishTransactionSelected(){
-		System.out.println("\nCurrent Money Provided: 0.00\n");
-		System.out.println("Thank You For Your Service!");
-		System.out.println(service.finishTransaction());
-	}
-	public void displayCurrentMoneyProvided(){
-		System.out.printf("\nCurrent Money Provided: $%.02f\n", service.getCurrentMoneyProvided());
-	}
-	public void exitMenu() {
-		System.out.println("\nThank You! Please Come Again!");
-		System.exit(0);
-	}
-}

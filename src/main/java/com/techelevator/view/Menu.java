@@ -8,15 +8,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.apache.commons.lang3.StringUtils;
 
-public class Menu {
+public class Menu{
 
 	private final PrintWriter out;
 	private final Scanner in;
@@ -72,6 +71,7 @@ public class Menu {
 				Scanner scan = new Scanner(file);
 
 				while (scan.hasNextLine()) {
+
 					String[] newItemArray = scan.nextLine().split("\\|");
 					switch (newItemArray[3]) {
 						case "Candy":
@@ -95,6 +95,7 @@ public class Menu {
 			} catch (Exception exception) {
 				System.out.println("Problem Loading Inventory List.  This Program will now close.");
 			}
+			Collections.sort(itemList);
 			service.setInventory(itemList);
 		}
 	}
@@ -109,9 +110,9 @@ public class Menu {
 		if (service.getInventory() != null) {
 			for (Item x : service.getInventory()) {
 				System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
-						StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator, StringUtils.center(x.getName(), 18),
-						separator, x.getPrice(), separator,
-						x.getStock() > 0 ? StringUtils.center("" + x.getStock(), 8) : StringUtils.center("SOLD OUT", 8) );
+						StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator,
+						StringUtils.center(x.getName(), 18), separator, x.getPrice(), separator,
+						x.getStock() > 0 ? StringUtils.center(String.valueOf(x.getStock()), 8) : StringUtils.center("SOLD OUT", 8) );
 			}
 			System.out.printf("%s%s", line, line);
 		}

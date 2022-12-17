@@ -24,7 +24,13 @@ public class VendingMachineCLI {
 	private static final String[] PURCHASE_PROCESS_MENU_OPTIONS = { PURCHASE_PROCESS_MENU_OPTION_FEED_MONEY,
 																	PURCHASE_PROCESS_MENU_OPTION_SELECT_PRODUCT,
 																	PURCHASE_PROCESS_MENU_OPTION_FINISH_TRANSACTION};
-	private Menu menu;
+	private final String ADMIN_MENU_OPTIONS_ADD_ITEM = "Add New Item";
+	private final String ADMIN_MENU_REMOVE_ITEM = "Remove Item";
+	private final String ADMIN_MENU_CHANGE_PRICE = "Change Price";
+	private final String ADMIN_MENU_MANUAL_RESTOCK = "Manual Restock";
+	private final String ADMIN_MENU_EXIT_ADMIN_MENU = "Exit Admin Menu";
+
+	private final Menu menu;
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;

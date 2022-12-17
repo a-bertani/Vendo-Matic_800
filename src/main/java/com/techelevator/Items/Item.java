@@ -2,7 +2,7 @@ package com.techelevator.Items;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class Item implements Comparable<Item>{
 	private final String slotIdentifier;
 	private final String name;
 	private final BigDecimal price;
@@ -46,5 +46,10 @@ public class Item {
 		this.price = price;
 		this.type = type;
 		this.stock = 5;
+	}
+	@Override
+	public int compareTo(Item o) {
+		int compareInt = this.getSlotIdentifier().compareTo(o.slotIdentifier);
+		return Integer.compare(compareInt, 0);
 	}
 }

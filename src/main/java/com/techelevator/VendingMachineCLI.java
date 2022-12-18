@@ -93,7 +93,7 @@ public class VendingMachineCLI {
 				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_REMOVE_ITEM:
-				System.out.println("This has remove item not been implemented yet.");
+				menu.removeItemSelected();
 				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_CHANGE_PRICE:

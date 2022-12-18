@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.Stack;
 
 public class Chip extends Item {
-	static Stack<String> idToBeUsed = new Stack<>();
 	static int nextStockId = 4;
 	static int stockLimit= 10;
+	public static Stack<String> idToBeUsed = new Stack<>();
 	public Chip(String slotIdentifier, String name, double price) {
 		super(slotIdentifier, name, BigDecimal.valueOf(price), "Chip");
 	}
@@ -18,7 +18,7 @@ public class Chip extends Item {
 
 	public static String findNextId() {
 		if(!idToBeUsed.isEmpty()){
-			return "A" + idToBeUsed.pop();
+			return idToBeUsed.pop();
 		}
 		if(nextStockId <= stockLimit) {
 			String currentId = "A" + nextStockId;

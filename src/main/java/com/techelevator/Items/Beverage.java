@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class Beverage extends Item {
 
-	static Stack<String> idToBeUsed = new Stack<>();
+	public static Stack<String> idToBeUsed = new Stack<>();
 	static int nextStockId = 5;
 	static int stockLimit= 10;
 
@@ -21,7 +21,7 @@ public class Beverage extends Item {
 
 	public static String findNextId() {
 		if(!idToBeUsed.isEmpty()){
-			return "C" + idToBeUsed.pop();
+			return idToBeUsed.pop();
 		}
 		if(nextStockId <= stockLimit) {
 			String currentId = "C" + nextStockId;

@@ -5,6 +5,7 @@ import com.techelevator.Items.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class Administrator {
 
@@ -34,5 +35,32 @@ public class Administrator {
             return Gum.findNextId();
         }
         return  "Item Cannot Be Placed";
+    }
+
+    public String removeItem(Service service, String id) {
+        Item itemToRemove = service.getInventory().stream()
+                .filter(item -> item.getSlotIdentifier().equalsIgnoreCase(id))
+                .findFirst()
+                .orElse(null);
+        List<Item> newInventory = service.getInventory();
+        if(itemToRemove == null) {
+            return "\nItem Cannot Be Found To Remove.";
+        }
+        pushToStack(id);
+        newInventory.remove(itemToRemove);
+        service.setInventory(newInventory);
+        return "\nItem has been removed.";
+    }
+
+    public void pushToStack(String id) {
+        if (id.startsWith("A")){
+            Chip.idToBeUsed.push(id);
+        } else if (id.startsWith("B")) {
+            Candy.idToBeUsed.push(id);
+        } else if (id.startsWith("C")) {
+            Beverage.idToBeUsed.push(id);
+        } else if (id.startsWith("D")) {
+            Gum.idToBeUsed.push(id);
+        }
     }
 }

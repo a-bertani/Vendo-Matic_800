@@ -4,9 +4,10 @@ import java.math.BigDecimal;
 import java.util.Stack;
 
 public class Candy extends Item {
-	static Stack<String> idToBeUsed = new Stack<>();
+
 	static int nextStockId = 5;
 	static int stockLimit= 10;
+	public static Stack<String> idToBeUsed = new Stack<>();
 	public Candy(String slotIdentifier, String name, double price) {
 		super(slotIdentifier, name, BigDecimal.valueOf(price), "Candy");
 	}
@@ -17,7 +18,7 @@ public class Candy extends Item {
 
 	public static String findNextId() {
 		if(!idToBeUsed.isEmpty()){
-			return "B" + idToBeUsed.pop();
+			return idToBeUsed.pop();
 		}
 		if(nextStockId <= stockLimit) {
 			String currentId = "B" + nextStockId;

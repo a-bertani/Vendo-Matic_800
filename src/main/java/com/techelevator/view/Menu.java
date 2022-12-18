@@ -203,7 +203,9 @@ public class Menu {
 		}
 
 		public void removeItemSelected() {
-			System.out.println("");
+			System.out.println("Please enter item id to remove: ");
+			String input = in.nextLine();
+			System.out.println(administrator.removeItem(service, input));
 		}
 
 

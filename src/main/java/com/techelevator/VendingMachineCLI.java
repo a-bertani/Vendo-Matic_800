@@ -30,11 +30,14 @@ public class VendingMachineCLI {
 	private final String ADMIN_MENU_ADD_ITEM = "Add New Item";
 	private final String ADMIN_MENU_REMOVE_ITEM = "Remove Item";
 	private final String ADMIN_MENU_CHANGE_PRICE = "Change Price";
+
+	private final String ADMIN_MENU_ADD_STOCK = "Add inventory";
 	private final String ADMIN_MENU_CHANGE_PASSWORD = "Change Password";
 	private final String ADMIN_MENU_EXIT_ADMIN_MENU = "Exit Admin Menu";
 	private final String [] ADMIN_MENU_OPTIONS = { ADMIN_MENU_ADD_ITEM,
 												   ADMIN_MENU_REMOVE_ITEM,
 												   ADMIN_MENU_CHANGE_PRICE,
+												   ADMIN_MENU_ADD_STOCK,
 												   ADMIN_MENU_CHANGE_PASSWORD,
 												   ADMIN_MENU_EXIT_ADMIN_MENU};
 
@@ -99,6 +102,10 @@ public class VendingMachineCLI {
 				break;
 			case ADMIN_MENU_CHANGE_PRICE:
 				menu.changePriceSelected();
+				handleAdminMenu(menu, choice);
+				break;
+			case ADMIN_MENU_ADD_STOCK:
+				menu.addStockSelected();
 				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_CHANGE_PASSWORD:

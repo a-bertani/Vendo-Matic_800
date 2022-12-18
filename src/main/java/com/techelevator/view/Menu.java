@@ -232,4 +232,12 @@ public class Menu {
 		}
 
 
+		public void addStockSelected() {
+			System.out.println("Please enter item id you will add stock too");
+			String itemId = in.nextLine();
+			System.out.println("Please enter how many items you added: ");
+			String input = in.nextLine();
+			Integer amountAdded = Integer.parseInt(input);
+			System.out.println(administrator.addStock(service, itemId, amountAdded));
+		}
 }

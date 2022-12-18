@@ -75,7 +75,21 @@ public class Administrator {
         }
         itemToChange.setPrice(BigDecimal.valueOf(price));
         return "Items Price Has Been Changed";
+    }
 
-
+    public String addStock(Service service, String id, int inventoryAdded) {
+        Item itemToChange = service.getInventory().stream()
+                .filter(item -> item.getSlotIdentifier().equalsIgnoreCase(id))
+                .findFirst()
+                .orElse(null);
+        List<Item> newInventory = service.getInventory();
+        if(itemToChange == null) {
+            return "\nItem Cannot Be Found To Add Inventory";
+        }
+        if (itemToChange.getStock() + inventoryAdded > 5) {
+            return "Inventory too high to complete.";
+        }
+        itemToChange.setStock(itemToChange.getStock() + inventoryAdded);
+        return "Inventory has been added to item successfully";
     }
 }

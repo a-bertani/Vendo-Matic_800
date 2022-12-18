@@ -2,6 +2,7 @@ package com.techelevator.view;
 
 import com.techelevator.Items.*;
 import com.techelevator.Services.Administrator;
+import com.techelevator.Services.Constants;
 import com.techelevator.Services.Service;
 
 import java.io.File;
@@ -180,6 +181,16 @@ public class Menu {
 		// ******************* ADMIN METHODS *******************
 	 	// ******************* ADMIN METHODS *******************
 
+		public boolean securityProtocol() {
+			System.out.println("Please Enter Password: ");
+			String input = in.nextLine();
+			if (input.equals(Constants.PASSWORD)) {
+				System.out.println("\nACCESS GRANTED");
+				return true;
+			}
+			System.out.println("\nACCESS DENIED");
+			return false;
+		}
 		public void addItemSelected() {
 			System.out.println("Please enter item type: ");
 			String type = in.nextLine();
@@ -191,4 +202,9 @@ public class Menu {
 			System.out.println(administrator.addItem(service, name, price, type));
 		}
 
-	}
+		public void removeItemSelected() {
+			System.out.println("");
+		}
+
+
+}

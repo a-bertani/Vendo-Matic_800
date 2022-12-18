@@ -59,7 +59,9 @@ public class VendingMachineCLI {
 			}else if(choice.equals(MAIN_MENU_OPTION_SALES_REPORT)){
 				menu.getSalesReport();
 			} else if (choice.equals(MAIN_MENU_OPTION_ADMIN_MENU)) {
-				handleAdminMenu(this.menu,choice);
+				if (menu.securityProtocol()) {
+					handleAdminMenu(this.menu, choice);
+				}
 			}
 		}
 	}

@@ -3,12 +3,12 @@ package com.techelevator.Items;
 import java.math.BigDecimal;
 
 public class Item implements Comparable<Item>{
-	private final String slotIdentifier;
 	private final String name;
 	private final BigDecimal price;
-
+	private final String slotIdentifier;
 	private String type;
 	private int stock;
+
 
 	public String getMessage() {
 		return "";
@@ -39,7 +39,6 @@ public class Item implements Comparable<Item>{
 		return type;
 	}
 
-
 	public Item(String slotIdentifier, String name, BigDecimal price, String type) {
 		this.slotIdentifier = slotIdentifier;
 		this.name = name;
@@ -47,9 +46,13 @@ public class Item implements Comparable<Item>{
 		this.type = type;
 		this.stock = 5;
 	}
+
 	@Override
 	public int compareTo(Item o) {
 		int compareInt = this.getSlotIdentifier().compareTo(o.slotIdentifier);
 		return Integer.compare(compareInt, 0);
 	}
+
+
+
 }

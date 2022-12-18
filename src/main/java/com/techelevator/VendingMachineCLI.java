@@ -87,20 +87,23 @@ public class VendingMachineCLI {
 		choice = (String) menu.getChoiceFromOptions(ADMIN_MENU_OPTIONS);
 		switch (choice) {
 			case ADMIN_MENU_ADD_ITEM:
-				System.out.println("This has not been implemented yet.");
+				menu.addItemSelected();
+				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_REMOVE_ITEM:
-				System.out.println("This has not been implemented yet.");
+				System.out.println("This has remove item not been implemented yet.");
+				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_CHANGE_PRICE:
-				System.out.println("This has not been implemented yet.");
+				System.out.println("This change price option has not been implemented yet.");
+				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_CHANGE_PASSWORD:
-				System.out.println("This has not been implemented yet.");
+				System.out.println("This change password option has not been implemented yet.");
+				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_EXIT_ADMIN_MENU:
 				System.out.println("Changes have been implemented and items have been restocked.\nThank you.");
-				menu.readInventory(new File("vendingmachine.csv"));
 				break;
 		}
 	}

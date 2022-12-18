@@ -1,6 +1,7 @@
 package com.techelevator.view;
 
 import com.techelevator.Items.*;
+import com.techelevator.Services.Administrator;
 import com.techelevator.Services.Service;
 
 import java.io.File;
@@ -21,6 +22,7 @@ public class Menu {
 	private final PrintWriter out;
 	private final Scanner in;
 	private final Service service = new Service();
+	private final Administrator administrator = new Administrator();
 
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
@@ -118,15 +120,14 @@ public class Menu {
 					line, line, StringUtils.center("TYPE", 5), separator, separator,
 					StringUtils.center("ITEM NAME", 18), separator, separator, StringUtils.center("STOCK", 8));
 
-			if (service.getInventory() != null) {
-				for (Item x : service.getInventory()) {
-					System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
+			service.getInventory().stream()
+					.sorted()
+					.forEach(x -> System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
 							StringUtils.center(x.getType(), 5), separator, x.getSlotIdentifier(), separator,
 							StringUtils.center(x.getName(), 18), separator, x.getPrice(), separator,
-							x.getStock() > 0 ? StringUtils.center(String.valueOf(x.getStock()), 8) : StringUtils.center("SOLD OUT", 8));
-				}
+							x.getStock() > 0 ? StringUtils.center(String.valueOf(x.getStock()), 8) : StringUtils.center("SOLD OUT", 8)));
+
 				System.out.printf("%s%s", line, line);
-			}
 		}
 
 		public void getSalesReport () {
@@ -174,4 +175,20 @@ public class Menu {
 			System.out.println("\nThank You! Please Come Again!");
 			System.exit(0);
 		}
+
+		// ******************* ADMIN METHODS *******************
+		// ******************* ADMIN METHODS *******************
+	 	// ******************* ADMIN METHODS *******************
+
+		public void addItemSelected() {
+			System.out.println("Please enter item type: ");
+			String type = in.nextLine();
+			System.out.println("Please enter item name:");
+			String name = in.nextLine();
+			System.out.println("Please enter item price");
+			String priceInput = in.nextLine();
+			Double price = Double.parseDouble(priceInput);
+			System.out.println(administrator.addItem(service, name, price, type));
+		}
+
 	}

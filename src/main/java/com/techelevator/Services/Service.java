@@ -1,11 +1,16 @@
 package com.techelevator.Services;
 
 
+import com.techelevator.Items.Beverage;
+import com.techelevator.Items.Candy;
 import com.techelevator.Items.Item;
 import com.techelevator.Logger.Logger;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+
 /*
 The service class is responsible for handling all transactions
  */
@@ -104,6 +109,8 @@ public class Service {
                 "Dimes: %d\n" +
                 "Nickels: %d\n", amtOfQuarters, amtOfDimes, amtOfNickels);
     }
+
+
     public BigDecimal getCurrentMoneyProvided() {
         return currentMoneyProvided;
     }
@@ -119,5 +126,7 @@ public class Service {
     public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
     }
+
+
 
 }

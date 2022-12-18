@@ -63,4 +63,19 @@ public class Administrator {
             Gum.idToBeUsed.push(id);
         }
     }
+
+    public String changePrice(Service service, String id, Double price) {
+        Item itemToChange = service.getInventory().stream()
+                .filter(item -> item.getSlotIdentifier().equalsIgnoreCase(id))
+                .findFirst()
+                .orElse(null);
+        List<Item> newInventory = service.getInventory();
+        if(itemToChange == null) {
+            return "\nItem Cannot Be Found To Change Price";
+        }
+        itemToChange.setPrice(BigDecimal.valueOf(price));
+        return "Items Price Has Been Changed";
+
+
+    }
 }

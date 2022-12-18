@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 
 public class Item implements Comparable<Item>{
 	private final String name;
-	private final BigDecimal price;
+
 	private final String slotIdentifier;
+	private BigDecimal price;
 	private String type;
 	private int stock;
 
@@ -24,6 +25,10 @@ public class Item implements Comparable<Item>{
 
 	public BigDecimal getPrice() {
 		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	public int getStock() {

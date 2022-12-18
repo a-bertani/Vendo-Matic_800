@@ -208,5 +208,28 @@ public class Menu {
 			System.out.println(administrator.removeItem(service, input));
 		}
 
+		public void changePriceSelected() {
+			System.out.println("Please enter id of which items price will change: ");
+			String item = in.nextLine();
+			System.out.println("Please enter new price: ");
+			String input = in.nextLine();
+			Double price = Double.parseDouble(input);
+			System.out.println(administrator.changePrice(service, item, price));
+		}
+
+		public void changePasswordSelected() {
+			System.out.println("Please enter current password: ");
+			String currPassword = in.nextLine();
+			String newPassword;
+			if(currPassword.equals(Constants.PASSWORD)) {
+				System.out.println("Please enter new password: ");
+				newPassword = in.nextLine();
+				Constants.setPASSWORD(newPassword);
+				System.out.println("\nPASSWORD CHANGED");
+			} else {
+				System.out.println("Wrong Password Entered");
+			}
+		}
+
 
 }

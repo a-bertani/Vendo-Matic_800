@@ -35,6 +35,7 @@ public class VendingMachineCLI {
 	private final String [] ADMIN_MENU_OPTIONS = { ADMIN_MENU_ADD_ITEM,
 												   ADMIN_MENU_REMOVE_ITEM,
 												   ADMIN_MENU_CHANGE_PRICE,
+												   ADMIN_MENU_CHANGE_PASSWORD,
 												   ADMIN_MENU_EXIT_ADMIN_MENU};
 
 
@@ -97,11 +98,11 @@ public class VendingMachineCLI {
 				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_CHANGE_PRICE:
-				System.out.println("This change price option has not been implemented yet.");
+				menu.changePriceSelected();
 				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_CHANGE_PASSWORD:
-				System.out.println("This change password option has not been implemented yet.");
+				menu.changePasswordSelected();
 				handleAdminMenu(menu, choice);
 				break;
 			case ADMIN_MENU_EXIT_ADMIN_MENU:

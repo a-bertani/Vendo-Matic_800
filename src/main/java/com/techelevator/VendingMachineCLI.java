@@ -64,6 +64,7 @@ public class VendingMachineCLI {
 				menu.getSalesReport();
 			} else if (choice.equals(MAIN_MENU_OPTION_ADMIN_MENU)) {
 				if (menu.securityProtocol()) {
+					menu.welcomeAdmin();
 					handleAdminMenu(this.menu, choice);
 				}
 			}
@@ -89,7 +90,6 @@ public class VendingMachineCLI {
 	}
 
 	private void handleAdminMenu(Menu menu, String choice) {
-		System.out.println("\nWelcome Admin!\nVending Machine will update with changes and fully restock upon exit.\nThank you.");
 		choice = (String) menu.getChoiceFromOptions(ADMIN_MENU_OPTIONS);
 		switch (choice) {
 			case ADMIN_MENU_ADD_ITEM:

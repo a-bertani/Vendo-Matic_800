@@ -4,10 +4,17 @@ import com.techelevator.Items.*;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Stack;
-import java.util.stream.Collectors;
 
 public class Administrator {
+    private String PASSWORD = "1234";
+
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
+    }
+
+    public String getPASSWORD() {
+        return PASSWORD;
+    }
 
     public String addItem(Service service, String name, Double price, String type){
         String id = findNextIdForType(type);
@@ -17,12 +24,26 @@ public class Administrator {
         //getting inventory
         List<Item> addItemList = service.getInventory();
         //creating new item
-        addItemList.add(new Item(id,name,BigDecimal.valueOf(price),type));
+        switch (type) {
+            case "Drink":
+                addItemList.add(new Beverage(id,name,price));
+                break;
+            case "Candy":
+                addItemList.add(new Candy(id,name,price));
+                break;
+            case "Chip":
+                addItemList.add(new Chip(id,name,price));
+                break;
+            case "Gum":
+                addItemList.add(new Gum(id,name,price));
+                break;
+        }
         //setting inventory with new item
         service.setInventory(addItemList);
         //saying where to place id
         return "\nPlease place item in id " + id;
     }
+
 
     public String findNextIdForType(String type) {
         if(type.equalsIgnoreCase("Drink")) {

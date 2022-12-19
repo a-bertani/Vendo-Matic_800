@@ -74,7 +74,10 @@ public class Service {
                     result.setStock(result.getStock() - 1);
                     logger.printLog(result.getName() + " " + result.getSlotIdentifier(),
                             result.getPrice(),getCurrentMoneyProvided()) ;
-                    return result.getName() + " " + result.getPrice() + " " + currentMoneyProvided + "\n" + result.getMessage();
+                    return "\nDispensing: " + result.getName() + " " +
+                            String.format("\nItem Price: %.02f \nBalance: %.02f",
+                                          result.getPrice(),currentMoneyProvided)
+                            + "\n\n" + result.getMessage();
                 } else {
                     return result.getName() + " is out of stock";
                 }

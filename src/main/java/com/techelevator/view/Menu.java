@@ -2,7 +2,6 @@ package com.techelevator.view;
 
 import com.techelevator.Items.*;
 import com.techelevator.Services.Administrator;
-import com.techelevator.Services.Constants;
 import com.techelevator.Services.Service;
 
 import java.io.File;
@@ -11,11 +10,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import com.techelevator.VendingMachineCLI;
 import org.apache.commons.lang3.StringUtils;
 
 public class Menu {
@@ -58,13 +54,6 @@ public class Menu {
 
 	private void displayMenuOptions(Object[] options) {
 		out.println();
-//		if (options.length == 6) {
-//			for (int i = 0; i < options.length; i++) {
-//				int optionNum = i + 1;
-//				out.println(optionNum + ") " + options[i]);
-//			}
-//		} else
-//		{
 			for (int i = 0; i < options.length; i++) {
 				int optionNum = i + 1;
 				if (options[i] == "Sales Report" || options[i] == "Admin Menu"){
@@ -181,10 +170,13 @@ public class Menu {
 		// ******************* ADMIN METHODS *******************
 	 	// ******************* ADMIN METHODS *******************
 
+		public void welcomeAdmin() {
+			System.out.println("\nWELCOME ADMIN!");
+		}
 		public boolean securityProtocol() {
-			System.out.println("Please Enter Password: ");
+			System.out.println("PLEASE ENTER PASSWORD: ");
 			String input = in.nextLine();
-			if (input.equals(Constants.PASSWORD)) {
+			if (input.equals(administrator.getPASSWORD())) {
 				System.out.println("\nACCESS GRANTED");
 				return true;
 			}
@@ -192,50 +184,49 @@ public class Menu {
 			return false;
 		}
 		public void addItemSelected() {
-			System.out.println("Please enter item type: ");
+			System.out.println("PLEASE ENTER ITEM TYPE: ");
 			String type = in.nextLine();
-			System.out.println("Please enter item name:");
+			System.out.println("PLEASE ENTER ITEM NAME: ");
 			String name = in.nextLine();
-			System.out.println("Please enter item price");
+			System.out.println("PLEASE ENTER ITEM PRICE: ");
 			String priceInput = in.nextLine();
 			Double price = Double.parseDouble(priceInput);
 			System.out.println(administrator.addItem(service, name, price, type));
 		}
 
 		public void removeItemSelected() {
-			System.out.println("Please enter item id to remove: ");
+			System.out.println("PLEASE ENTER ITEM ID TO REMOVE: ");
 			String input = in.nextLine();
 			System.out.println(administrator.removeItem(service, input));
 		}
 
 		public void changePriceSelected() {
-			System.out.println("Please enter id of which items price will change: ");
+			System.out.println("PLEASE ENTER ID OF WHICH ITEMS PRICE WILL CHANGE: ");
 			String item = in.nextLine();
-			System.out.println("Please enter new price: ");
+			System.out.println("PLEASE ENTER NEW PRICE: ");
 			String input = in.nextLine();
 			Double price = Double.parseDouble(input);
 			System.out.println(administrator.changePrice(service, item, price));
 		}
 
 		public void changePasswordSelected() {
-			System.out.println("Please enter current password: ");
+			System.out.println("PLEASE ENTER CURRENT PASSWORD: ");
 			String currPassword = in.nextLine();
 			String newPassword;
-			if(currPassword.equals(Constants.PASSWORD)) {
-				System.out.println("Please enter new password: ");
+			if(currPassword.equals(administrator.getPASSWORD())) {
+				System.out.println("PLEASE ENTER NEW PASSWORD: ");
 				newPassword = in.nextLine();
-				Constants.setPASSWORD(newPassword);
+				administrator.setPASSWORD(newPassword);
 				System.out.println("\nPASSWORD CHANGED");
 			} else {
-				System.out.println("Wrong Password Entered");
+				System.out.println("WRONG PASSWORD ENTERED");
 			}
 		}
 
-
 		public void addStockSelected() {
-			System.out.println("Please enter item id you will add stock too");
+			System.out.println("PLEASE ENTER ITEM ID YOU WILL ADD STOCK TO: ");
 			String itemId = in.nextLine();
-			System.out.println("Please enter how many items you added: ");
+			System.out.println("PLEASE ENTER HOW MANY ITEMS YOU ADDED: ");
 			String input = in.nextLine();
 			Integer amountAdded = Integer.parseInt(input);
 			System.out.println(administrator.addStock(service, itemId, amountAdded));

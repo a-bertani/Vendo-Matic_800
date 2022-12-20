@@ -2,8 +2,10 @@ package com.techelevator.Services;
 
 import com.techelevator.Items.*;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Scanner;
 
 public class Administrator {
     private String PASSWORD = "1234";
@@ -112,5 +114,18 @@ public class Administrator {
         }
         itemToChange.setStock(itemToChange.getStock() + inventoryAdded);
         return "Inventory has been added to item successfully";
+    }
+
+    public void printAuditFile() {
+        File auditFile = new File("Log.txt");
+        Scanner scanner;
+        try {
+            scanner = new Scanner(auditFile);
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+            }
+        } catch (Exception e) {
+            System.out.println("Audit file not found");
+        }
     }
 }

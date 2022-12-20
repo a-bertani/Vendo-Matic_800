@@ -3,6 +3,7 @@ package com.techelevator;
 import com.techelevator.view.Menu;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,12 +33,14 @@ public class VendingMachineCLI {
 	private static final String ADMIN_MENU_REMOVE_ITEM = "Remove Item";
 	private static final String ADMIN_MENU_CHANGE_PRICE = "Change Price";
 	private static final String ADMIN_MENU_ADD_STOCK = "Add inventory";
+	private static final String ADMIN_MENU_PRINT_AUDIT_FILE = "Print Audit File";
 	private static final String ADMIN_MENU_CHANGE_PASSWORD = "Change Password";
 	private static final String ADMIN_MENU_EXIT_ADMIN_MENU = "Exit Admin Menu";
 	private static final String [] ADMIN_MENU_OPTIONS = { ADMIN_MENU_ADD_ITEM,
 												   ADMIN_MENU_REMOVE_ITEM,
 												   ADMIN_MENU_CHANGE_PRICE,
 												   ADMIN_MENU_ADD_STOCK,
+												   ADMIN_MENU_PRINT_AUDIT_FILE,
 												   ADMIN_MENU_CHANGE_PASSWORD,
 												   ADMIN_MENU_EXIT_ADMIN_MENU};
 
@@ -113,6 +116,9 @@ public class VendingMachineCLI {
 				menu.addStockSelected();
 				handleAdminMenu(menu, choice);
 				break;
+			case ADMIN_MENU_PRINT_AUDIT_FILE:
+				menu.printAuditFile();
+				handleAdminMenu(menu, choice);
 			case ADMIN_MENU_CHANGE_PASSWORD:
 				menu.changePasswordSelected();
 				handleAdminMenu(menu, choice);

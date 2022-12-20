@@ -9,38 +9,37 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
-
+	//MAIN_MENU display options
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
 	private static final String MAIN_MENU_OPTION_SALES_REPORT ="Sales Report";
-
 	private static final String MAIN_MENU_OPTION_ADMIN_MENU = "Admin Menu";
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS,
 														MAIN_MENU_OPTION_PURCHASE,
 														MAIN_MENU_OPTION_EXIT,
 														MAIN_MENU_OPTION_SALES_REPORT,
 														MAIN_MENU_OPTION_ADMIN_MENU};
+	//PURCHASE_PROCESS display options
 	private static final String PURCHASE_PROCESS_MENU_OPTION_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_PROCESS_MENU_OPTION_SELECT_PRODUCT = "Select Product";
 	private static final String PURCHASE_PROCESS_MENU_OPTION_FINISH_TRANSACTION ="Finish Transaction";
 	private static final String[] PURCHASE_PROCESS_MENU_OPTIONS = { PURCHASE_PROCESS_MENU_OPTION_FEED_MONEY,
 																	PURCHASE_PROCESS_MENU_OPTION_SELECT_PRODUCT,
 																	PURCHASE_PROCESS_MENU_OPTION_FINISH_TRANSACTION};
-	private final String ADMIN_MENU_ADD_ITEM = "Add New Item";
-	private final String ADMIN_MENU_REMOVE_ITEM = "Remove Item";
-	private final String ADMIN_MENU_CHANGE_PRICE = "Change Price";
-
-	private final String ADMIN_MENU_ADD_STOCK = "Add inventory";
-	private final String ADMIN_MENU_CHANGE_PASSWORD = "Change Password";
-	private final String ADMIN_MENU_EXIT_ADMIN_MENU = "Exit Admin Menu";
-	private final String [] ADMIN_MENU_OPTIONS = { ADMIN_MENU_ADD_ITEM,
+	//ADMIN_MENU display options
+	private static final String ADMIN_MENU_ADD_ITEM = "Add New Item";
+	private static final String ADMIN_MENU_REMOVE_ITEM = "Remove Item";
+	private static final String ADMIN_MENU_CHANGE_PRICE = "Change Price";
+	private static final String ADMIN_MENU_ADD_STOCK = "Add inventory";
+	private static final String ADMIN_MENU_CHANGE_PASSWORD = "Change Password";
+	private static final String ADMIN_MENU_EXIT_ADMIN_MENU = "Exit Admin Menu";
+	private static final String [] ADMIN_MENU_OPTIONS = { ADMIN_MENU_ADD_ITEM,
 												   ADMIN_MENU_REMOVE_ITEM,
 												   ADMIN_MENU_CHANGE_PRICE,
 												   ADMIN_MENU_ADD_STOCK,
 												   ADMIN_MENU_CHANGE_PASSWORD,
 												   ADMIN_MENU_EXIT_ADMIN_MENU};
-
 
 	private final Menu menu;
 
@@ -71,7 +70,13 @@ public class VendingMachineCLI {
 		}
 	}
 
-	public static void handlePurchaseProcessMenu(Menu menu, String choice){
+	public static void main(String[] args) {
+		Menu menu = new Menu(System.in, System.out);
+		VendingMachineCLI cli = new VendingMachineCLI(menu);
+		cli.run();
+	}
+
+	private static void handlePurchaseProcessMenu(Menu menu, String choice){
 		menu.displayCurrentMoneyProvided();
 		choice = (String) menu.getChoiceFromOptions(PURCHASE_PROCESS_MENU_OPTIONS);
 		switch (choice) {
@@ -118,9 +123,4 @@ public class VendingMachineCLI {
 		}
 	}
 
-	public static void main(String[] args) {
-		Menu menu = new Menu(System.in, System.out);
-		VendingMachineCLI cli = new VendingMachineCLI(menu);
-		cli.run();
-	}
 }

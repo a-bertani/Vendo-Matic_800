@@ -1,10 +1,10 @@
 package com.techelevator.Items;
 
 import java.math.BigDecimal;
-
+//Item class is the super class responsible for hosting the methods that are utilized by
+// children classes: Candy, Chips, Beverages, & Gum
 public class Item implements Comparable<Item>{
 	private final String name;
-
 	private final String slotIdentifier;
 	private BigDecimal price;
 	private String type;

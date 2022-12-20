@@ -3,6 +3,8 @@ package com.techelevator.Items;
 import java.math.BigDecimal;
 import java.util.Stack;
 
+//The beverage class was created to cover one type of item in the vending machine.
+//It has implemented the methods that are provided from the super class.
 public class Beverage extends Item {
 
 	public static Stack<String> idToBeUsed = new Stack<>();

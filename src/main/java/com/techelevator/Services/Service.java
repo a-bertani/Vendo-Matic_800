@@ -1,29 +1,24 @@
 package com.techelevator.Services;
 
 
-import com.techelevator.Items.Beverage;
-import com.techelevator.Items.Candy;
 import com.techelevator.Items.Item;
 import com.techelevator.Logger.Logger;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+
 
 /*
 The service class is responsible for handling all transactions
  */
 public class Service {
     private final Money money = new Money();
+    private final Logger logger = new Logger();
     private BigDecimal currentMoneyProvided = BigDecimal.valueOf(0.00);
     private List<Item> inventory;
-    private final Logger logger = new Logger();
+
     /*
     The purchaseItem method is responsible for checking the validity of a purchase
      before dispensing the item.
-     @param String slotIdentifier uses slot identifier to find item
-     @return String shows the result of the attempt to purchase item
      */
     public String purchaseItem(String slotIdentifier) {
         String id = slotIdentifier.trim();
@@ -36,9 +31,7 @@ public class Service {
     /*
     The feedMoney method checks to see if the amount to add is equivalent to a valid
     money amount and also if the amount is >= 1 dollar
-    If it is valid we add the amount to the currentMoneyProvided
-    @param amountToAdd potential amount to add
-    @return void
+    If it is valid, we add the amount to the currentMoneyProvided
      */
     public String feedMoney(BigDecimal amountToAdd) {
         BigDecimal amount = money.moneyList.stream()
@@ -56,16 +49,9 @@ public class Service {
     }
 
     /*
-    Allows the customer to complete the transaction and receive any remaining change
-    through calling the getChange method
-    @return String result of the getChange method
-    @see getChange()
+    The dispenseItem() checks all the requirements for a purchase like:
+    having enough money, item has stock available, & the item exists.
      */
-    public String finishTransaction() {
-        logger.printLog("GIVE CHANGE: ", getCurrentMoneyProvided(), BigDecimal.ZERO);
-        return getChange();
-    }
-
     public String dispenseItem(Item result) {
         if(result != null){
             if (result.getPrice().compareTo(currentMoneyProvided) <=0) {
@@ -88,9 +74,16 @@ public class Service {
         return "Product code does not exist";
     }
     /*
+    Allows the customer to complete the transaction and receive any remaining change
+    through calling the getChange method
+     */
+    public String finishTransaction() {
+        logger.printLog("GIVE CHANGE: ", getCurrentMoneyProvided(), BigDecimal.ZERO);
+        return getChange();
+    }
+    /*
     The get change uses the current money provided and calculates the change using
     the smallest amount of coins possible
-    @return String lists the amount of quarters, dimes, nickels, provided in the change
     */
     public String getChange(){
         int amtOfQuarters = 0;

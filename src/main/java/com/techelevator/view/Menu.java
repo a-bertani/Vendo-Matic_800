@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 public class Menu {
-
 	private final PrintWriter out;
 	private final Scanner in;
 	private final Service service = new Service();
@@ -102,14 +101,14 @@ public class Menu {
 				service.setInventory(itemList);
 			}
 		}
-		//  Displays item choices including type,
+		//  Displays item choices including type, id, name, price, & stock
 		public void displayVendingMachineItems () {
 			String line = "************************************************************\n";
 			String separator = " | ";
 			System.out.printf("%s********************** ITEMS FOR SALE **********************\n%s**** %5s%sID%s%18s%sPRICE%s%-5s ****\n",
 					line, line, StringUtils.center("TYPE", 5), separator, separator,
 					StringUtils.center("ITEM NAME", 18), separator, separator, StringUtils.center("STOCK", 8));
-
+			//Converts inventory item list into a stream that sorts items by id
 			service.getInventory().stream()
 					.sorted()
 					.forEach(x -> System.out.printf("**** %s%s%s%s%s%s$%.2f%s%s ****\n",
@@ -135,6 +134,7 @@ public class Menu {
 			return service;
 		}
 
+		//collects the customer input of money and calls the service to handle transaction
 		public void feedMoneySelected () {
 			System.out.println("\nPlease Enter Whole Dollar Amount To Feed: ");
 			String response = "";
@@ -147,20 +147,24 @@ public class Menu {
 				System.out.println("Please Enter A Real Number");
 			}
 		}
+		//collects the customer input of the item they want
 		public void selectProductSelected () {
 			displayVendingMachineItems();
 			System.out.println("\nPlease Enter Item Id: ");
 			String slotIdentifier = in.nextLine();
 			System.out.println(service.purchaseItem(slotIdentifier));
 		}
+		//exits the purchase process menu
 		public void finishTransactionSelected () {
 			System.out.println("\nCurrent Money Provided: 0.00\n");
 			System.out.println("Thank You For Your Service!");
 			System.out.println(service.finishTransaction());
 		}
+		//displays customers provided money
 		public void displayCurrentMoneyProvided () {
 			System.out.printf("\nCurrent Money Provided: $%.02f\n", service.getCurrentMoneyProvided());
 		}
+		//exits the program
 		public void exitMenu () {
 			System.out.println("\nThank You! Please Come Again!");
 			System.exit(0);

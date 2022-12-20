@@ -2,8 +2,10 @@ package com.techelevator.Services;
 
 import com.techelevator.Items.*;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Scanner;
 
 public class Administrator {
     private String PASSWORD = "1234";
@@ -113,4 +115,5 @@ public class Administrator {
         itemToChange.setStock(itemToChange.getStock() + inventoryAdded);
         return "Inventory has been added to item successfully";
     }
+
 }

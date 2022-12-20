@@ -3,11 +3,7 @@ package com.techelevator.view;
 import com.techelevator.Items.*;
 import com.techelevator.Services.Administrator;
 import com.techelevator.Services.Service;
-
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -235,4 +231,16 @@ public class Menu {
 			Integer amountAdded = Integer.parseInt(input);
 			System.out.println(administrator.addStock(service, itemId, amountAdded));
 		}
+
+	public void printAuditFile() {
+		File auditFile = new File("Log.txt");
+		try {
+			Scanner scanner = new Scanner(auditFile);
+			while (scanner.hasNextLine()) {
+				System.out.println(scanner.nextLine());
+			}
+		} catch (Exception e) {
+			System.out.println("Audit file not found");
+		}
+	}
 }

@@ -232,7 +232,15 @@ public class Menu {
 			System.out.println(administrator.addStock(service, itemId, amountAdded));
 		}
 
-		public void printAuditFile() {
-			administrator.printAuditFile();
+	public void printAuditFile() {
+		File auditFile = new File("Log.txt");
+		try {
+			Scanner scanner = new Scanner(auditFile);
+			while (scanner.hasNextLine()) {
+				System.out.println(scanner.nextLine());
+			}
+		} catch (Exception e) {
+			System.out.println("Audit file not found");
 		}
+	}
 }

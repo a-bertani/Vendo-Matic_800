@@ -116,16 +116,4 @@ public class Administrator {
         return "Inventory has been added to item successfully";
     }
 
-    public void printAuditFile() {
-        File auditFile = new File("Log.txt");
-        Scanner scanner;
-        try {
-            scanner = new Scanner(auditFile);
-            while (scanner.hasNextLine()) {
-                System.out.println(scanner.nextLine());
-            }
-        } catch (Exception e) {
-            System.out.println("Audit file not found");
-        }
-    }
 }

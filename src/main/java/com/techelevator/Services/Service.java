@@ -1,6 +1,5 @@
 package com.techelevator.Services;
 
-
 import com.techelevator.Items.Item;
 import com.techelevator.Logger.Logger;
 import java.math.BigDecimal;
@@ -34,7 +33,7 @@ public class Service {
     If it is valid, we add the amount to the currentMoneyProvided
      */
     public String feedMoney(BigDecimal amountToAdd) {
-        BigDecimal amount = money.moneyList.stream()
+        BigDecimal amount = money.getMoneyList().stream()
                 .filter(a -> a.equals(amountToAdd))
                 .findFirst()
                 .orElse(null);

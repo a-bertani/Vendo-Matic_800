@@ -13,7 +13,7 @@ public class Money {
    private final BigDecimal FIVE = BigDecimal.valueOf(5.00);
    private final BigDecimal TEN = BigDecimal.valueOf(10.00);
    private final BigDecimal TWENTY = BigDecimal.valueOf(20.00);
-    final List<BigDecimal> moneyList = new ArrayList<>(Arrays.asList(NICKEL, DIME, QUARTER, DOLLAR, FIVE, TEN, TWENTY));
+   private final List<BigDecimal> moneyList = new ArrayList<>(Arrays.asList(NICKEL, DIME, QUARTER, DOLLAR, FIVE, TEN, TWENTY));
 
     public BigDecimal getNICKEL() {
         return NICKEL;

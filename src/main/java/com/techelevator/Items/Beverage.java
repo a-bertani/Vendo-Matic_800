@@ -8,8 +8,8 @@ import java.util.Stack;
 public class Beverage extends Item {
 
 	public static Stack<String> idToBeUsed = new Stack<>();
-	static int nextStockId = 5;
-	static int stockLimit= 10;
+	private static int nextStockId = 5;
+	private static int stockLimit= 10;
 
 	public Beverage(String slotIdentifier, String name, double price) {
 		super(slotIdentifier, name, BigDecimal.valueOf(price), "Drink");

@@ -1,13 +1,7 @@
 package com.techelevator;
 
 import com.techelevator.view.Menu;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
 
 public class VendingMachineCLI {
 	//MAIN_MENU display options
@@ -51,7 +45,7 @@ public class VendingMachineCLI {
 	}
 
 	public void run() {
-		welcomeArt();
+		menu.welcomeArt();
 		menu.readInventory(new File("vendingmachine.csv"));
 
 		while (true) {
@@ -128,18 +122,6 @@ public class VendingMachineCLI {
 				System.out.println("Changes have been implemented and items have been restocked.\nThank you.");
 				break;
 		}
-	}
-
-	public void welcomeArt(){
-		System.out.printf(
-				"\n\t\t\t\t$$\\    $$\\                           $$\\                  $$\\      $$\\           $$\\     $$\\                  $$$$$$\\   $$$$$$\\   $$$$$$\\ s\n" +
-				"\t\t\t\t$$ |   $$ |                          $$ |                 $$$\\    $$$ |          $$ |    \\__|                $$  __$$\\ $$$ __$$\\ $$$ __$$\\s\n" +
-				"\t\t\t\t$$ |   $$ | $$$$$$\\  $$$$$$$\\   $$$$$$$ | $$$$$$\\         $$$$\\  $$$$ | $$$$$$\\$$$$$$\\   $$\\  $$$$$$$\\       $$ /  $$ |$$$$\\ $$ |$$$$\\ $$ |\n" +
-				"\t\t\t\t\\$$\\  $$  |$$  __$$\\ $$  __$$\\ $$  __$$ |$$  __$$\\$$$$$$\\ $$\\$$\\$$ $$ | \\____$$\\_$$  _|  $$ |$$  _____|       $$$$$$  |$$\\$$\\$$ |$$\\$$\\$$ |\n" +
-				"\t\t\t\t \\$$\\$$  / $$$$$$$$ |$$ |  $$ |$$ /  $$ |$$ /  $$ \\______|$$ \\$$$  $$ | $$$$$$$ |$$ |    $$ |$$ /            $$  __$$< $$ \\$$$$ |$$ \\$$$$ |\n" +
-				"\t\t\t\t  \\$$$  /  $$   ____|$$ |  $$ |$$ |  $$ |$$ |  $$ |       $$ |\\$  /$$ |$$  __$$ |$$ |$$\\ $$ |$$ |            $$ /  $$ |$$ |\\$$$ |$$ |\\$$$ |\n" +
-				"\t\t\t\t   \\$  /   \\$$$$$$$\\ $$ |  $$ |\\$$$$$$$ |\\$$$$$$  |       $$ | \\_/ $$ |\\$$$$$$$ |\\$$$$  |$$ |\\$$$$$$$\\       \\$$$$$$  |\\$$$$$$  /\\$$$$$$  /\n" +
-				"\t\t\t\t    \\_/     \\_______|\\__|  \\__| \\_______| \\______/        \\__|     \\__| \\_______| \\____/ \\__| \\_______|       \\______/  \\______/  \\______/s");
 	}
 
 }

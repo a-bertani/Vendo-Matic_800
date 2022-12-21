@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.Stack;
 
 public class Chip extends Item {
-	static int nextStockId = 4;
-	static int stockLimit= 10;
 	public static Stack<String> idToBeUsed = new Stack<>();
+	private static int nextStockId = 4;
+	private static int stockLimit= 10;
 	public Chip(String slotIdentifier, String name, double price) {
 		super(slotIdentifier, name, BigDecimal.valueOf(price), "Chip");
 	}

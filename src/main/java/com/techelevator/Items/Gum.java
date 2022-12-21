@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.Stack;
 
 public class Gum extends Item{
-	static int nextStockId = 5;
-	static int stockLimit= 10;
 	public static Stack<String> idToBeUsed = new Stack<>();
+	private static int nextStockId = 5;
+	private static int stockLimit= 10;
 	public Gum(String slotIdentifier, String name, double price) {
 		super(slotIdentifier, name, BigDecimal.valueOf(price), "Gum");
 	}

@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
+//Menu handles all the display outputs to the VendingMachineCLI
 public class Menu {
 	private final PrintWriter out;
 	private final Scanner in;

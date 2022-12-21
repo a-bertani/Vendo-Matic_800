@@ -3,7 +3,6 @@ package com.techelevator;
 import com.techelevator.view.Menu;
 import junit.framework.TestCase;
 import org.junit.Test;
-
 import java.io.File;
 import java.math.BigDecimal;
 
@@ -13,7 +12,12 @@ public class ServiceTest extends TestCase {
         Menu menu = new Menu(System.in, System.out);
         menu.readInventory(new File("vendingmachine.csv"));
         menu.getService().setCurrentMoneyProvided(BigDecimal.valueOf(5.00));
-        assertEquals("Stackers 1.45 3.55\nCrunch Crunch, Yum!", menu.getService().purchaseItem("A2"));
+        assertEquals("\n" +
+                "Dispensing: Stackers \n" +
+                "Item Price: 1.45 \n" +
+                "Balance: 3.55\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("A2"));
     }
 
     @Test
@@ -21,7 +25,12 @@ public class ServiceTest extends TestCase {
         Menu menu = new Menu(System.in, System.out);
         menu.readInventory(new File("vendingmachine.csv"));
         menu.getService().setCurrentMoneyProvided(BigDecimal.valueOf(5.00));
-        assertEquals("Stackers 1.45 3.55\nCrunch Crunch, Yum!", menu.getService().purchaseItem("  A2   "));
+        assertEquals("\n" +
+                "Dispensing: Stackers \n" +
+                "Item Price: 1.45 \n" +
+                "Balance: 3.55\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("  A2   "));
     }
 
     @Test
@@ -29,7 +38,12 @@ public class ServiceTest extends TestCase {
         Menu menu = new Menu(System.in, System.out);
         menu.readInventory(new File("vendingmachine.csv"));
         menu.getService().setCurrentMoneyProvided(BigDecimal.valueOf(5.00));
-        assertEquals("Stackers 1.45 3.55\nCrunch Crunch, Yum!", menu.getService().purchaseItem("a2"));
+        assertEquals("\n" +
+                "Dispensing: Stackers \n" +
+                "Item Price: 1.45 \n" +
+                "Balance: 3.55\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("a2"));
     }
 
     @Test
@@ -37,8 +51,17 @@ public class ServiceTest extends TestCase {
         Menu menu = new Menu(System.in, System.out);
         menu.readInventory(new File("vendingmachine.csv"));
         menu.getService().setCurrentMoneyProvided(BigDecimal.valueOf(5.00));
-        assertEquals("Potato Crisps 3.05 1.95\nCrunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
-        assertEquals("Stackers 1.45 0.50\nCrunch Crunch, Yum!", menu.getService().purchaseItem("A2"));
+        assertEquals("\nDispensing: Potato Crisps \n" +
+                "Item Price: 3.05 \n" +
+                "Balance: 1.95\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
+        assertEquals("\n" +
+                "Dispensing: Stackers \n" +
+                "Item Price: 1.45 \n" +
+                "Balance: 0.50\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("A2"));
     }
 
     @Test
@@ -54,11 +77,36 @@ public class ServiceTest extends TestCase {
         Menu menu = new Menu(System.in, System.out);
         menu.readInventory(new File("vendingmachine.csv"));
         menu.getService().feedMoney(BigDecimal.valueOf(20.00));
-        assertEquals("Potato Crisps 3.05 16.95\nCrunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
-        assertEquals("Potato Crisps 3.05 13.90\nCrunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
-        assertEquals("Potato Crisps 3.05 10.85\nCrunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
-        assertEquals("Potato Crisps 3.05 7.80\nCrunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
-        assertEquals("Potato Crisps 3.05 4.75\nCrunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
+        assertEquals("\n" +
+                "Dispensing: Potato Crisps \n" +
+                "Item Price: 3.05 \n" +
+                "Balance: 16.95\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
+        assertEquals("\n" +
+                "Dispensing: Potato Crisps \n" +
+                "Item Price: 3.05 \n" +
+                "Balance: 13.90\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
+        assertEquals("\n" +
+                "Dispensing: Potato Crisps \n" +
+                "Item Price: 3.05 \n" +
+                "Balance: 10.85\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
+        assertEquals("\n" +
+                "Dispensing: Potato Crisps \n" +
+                "Item Price: 3.05 \n" +
+                "Balance: 7.80\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
+        assertEquals("\n" +
+                "Dispensing: Potato Crisps \n" +
+                "Item Price: 3.05 \n" +
+                "Balance: 4.75\n" +
+                "\n" +
+                "Crunch Crunch, Yum!", menu.getService().purchaseItem("A1"));
         assertEquals("Potato Crisps is out of stock", menu.getService().purchaseItem("A1"));
     }
 

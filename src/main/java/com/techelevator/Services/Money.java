@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 //Money class was created to be used for all the transactions in the Service class
 public class Money {
    private final BigDecimal NICKEL = BigDecimal.valueOf(.05);

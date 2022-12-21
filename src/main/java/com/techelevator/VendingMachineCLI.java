@@ -4,6 +4,7 @@ import com.techelevator.view.Menu;
 import java.io.File;
 
 public class VendingMachineCLI {
+
 	//MAIN_MENU display options
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";

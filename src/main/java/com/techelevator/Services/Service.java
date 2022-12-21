@@ -5,7 +5,6 @@ import com.techelevator.Logger.Logger;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 /*
 The service class is responsible for handling all transactions
  */

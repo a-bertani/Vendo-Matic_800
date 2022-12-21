@@ -6,11 +6,9 @@ import java.util.List;
 
 public class Administrator {
     private String PASSWORD = "1234";
-
     public void setPASSWORD(String PASSWORD) {
         this.PASSWORD = PASSWORD;
     }
-
     public String getPASSWORD() {
         return PASSWORD;
     }
@@ -45,7 +43,7 @@ public class Administrator {
 
 
     public String findNextIdForType(String type) {
-        if(type.equalsIgnoreCase("Drink")) {
+        if(type.equals("Drink")) {
             return Beverage.findNextId();
         } else if (type.equals("Candy")) {
             return Candy.findNextId();

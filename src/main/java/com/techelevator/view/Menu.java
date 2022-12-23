@@ -60,7 +60,7 @@ public class Menu {
 			out.flush();
 		}
 
-	//Accepts a file and converts lines in the file into Item Objects and adds them to and Item Object List
+	//Accepts a file and converts lines in the file into Item Objects and adds them to an Item Object List
 	public void readInventory (File file){
 		List<Item> itemList = new ArrayList<Item>();
 
@@ -112,7 +112,7 @@ public class Menu {
 						StringUtils.center(x.getName(), 18), separator, x.getPrice(), separator,
 						x.getStock() > 0 ? StringUtils.center(String.valueOf(x.getStock()), 8) : StringUtils.center("SOLD OUT", 8)));
 
-			System.out.printf("%s%s", line, line);
+		System.out.printf("%s%s", line, line);
 	}
 
 	public void getSalesReport () {

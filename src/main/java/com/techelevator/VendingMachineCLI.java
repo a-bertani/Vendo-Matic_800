@@ -16,7 +16,7 @@ public class VendingMachineCLI {
 														MAIN_MENU_OPTION_EXIT,
 														MAIN_MENU_OPTION_SALES_REPORT,
 														MAIN_MENU_OPTION_ADMIN_MENU};
-	//PURCHASE_PROCESS display options
+	//PURCHASE_PROCESS_MENU display options
 	private static final String PURCHASE_PROCESS_MENU_OPTION_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_PROCESS_MENU_OPTION_SELECT_PRODUCT = "Select Product";
 	private static final String PURCHASE_PROCESS_MENU_OPTION_FINISH_TRANSACTION ="Finish Transaction";
@@ -27,7 +27,7 @@ public class VendingMachineCLI {
 	private static final String ADMIN_MENU_ADD_ITEM = "Add New Item";
 	private static final String ADMIN_MENU_REMOVE_ITEM = "Remove Item";
 	private static final String ADMIN_MENU_CHANGE_PRICE = "Change Price";
-	private static final String ADMIN_MENU_ADD_STOCK = "Add inventory";
+	private static final String ADMIN_MENU_ADD_STOCK = "Add Inventory";
 	private static final String ADMIN_MENU_PRINT_AUDIT_FILE = "Print Audit File";
 	private static final String ADMIN_MENU_CHANGE_PASSWORD = "Change Password";
 	private static final String ADMIN_MENU_EXIT_ADMIN_MENU = "Exit Admin Menu";
